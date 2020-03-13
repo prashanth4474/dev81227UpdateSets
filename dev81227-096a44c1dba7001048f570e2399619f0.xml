@@ -1,0 +1,483 @@
+<?xml version="1.0" encoding="UTF-8"?><unload unload_date="2020-03-13 09:00:03"><sys_remote_update_set action="INSERT_OR_UPDATE"><application display_value="Delta">89c51077db320010bdf72bfa4b961992</application><application_name>Delta</application_name><application_scope>x_8481_delta</application_scope><application_version>1.1.0</application_version><collisions/><commit_date/><deleted/><description> </description><inserted/><name>Delta</name><origin_sys_id/><parent/><release_date/><remote_base_update_set/><remote_parent_id/><remote_sys_id>096a44c1dba7001048f570e2399619f0</remote_sys_id><state>loaded</state><summary/><sys_class_name>sys_remote_update_set</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2020-03-13 09:00:02</sys_created_on><sys_id>8def4cdddb67401048f570e2399619c3</sys_id><sys_mod_count>0</sys_mod_count><sys_updated_by>admin</sys_updated_by><sys_updated_on>2020-03-13 09:00:02</sys_updated_on><update_set/><update_source/><updated/></sys_remote_update_set><sys_update_xml action="INSERT_OR_UPDATE"><action>INSERT_OR_UPDATE</action><application display_value="Delta">89c51077db320010bdf72bfa4b961992</application><category>customer</category><comments/><name>sp_angular_provider_61fb9c3fdb320010bdf72bfa4b9619ac</name><payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update table="sp_angular_provider"&gt;&lt;sp_angular_provider action="INSERT_OR_UPDATE"&gt;&lt;name&gt;DeltaPortalSvc&lt;/name&gt;&lt;script&gt;&lt;![CDATA[function($rootScope, $http, spUtil) {
+var data = {
+	summary : {},
+	portals : [],
+	portalCount : 0,
+	pages : [],
+	widgets : []
+};
+
+this.loadData = function() {
+	return data;
+};
+
+
+	this.getPortals = function() {
+
+		$http({
+			method: 'GET',
+			url: '/api/x_8481_delta/deltaportalapi/getportals'
+		}).success(function(dat, status) {
+			
+		data.portals = dat.result;
+		data.portalCount = data.portals.length;
+			
+		}).error(function(dat, status) {
+		});
+	};
+	
+	this.getPortalStats = function() {
+
+		$http({
+			method: 'GET',
+			url: '/api/x_8481_delta/deltaportalapi/getportalstats'
+		}).success(function(dat, status) {
+			
+		data.summary = dat.result;
+			
+		}).error(function(dat, status) {
+		});
+	};
+
+	this.getPages = function() {
+
+		$http({
+			method: 'GET',
+			url: '/api/x_8481_delta/deltaportalapi/getpages'
+		}).success(function(dat, status) {
+			
+		data.pages = dat.result;
+			
+		}).error(function(dat, status) {
+		});
+	};
+
+	this.getWidgets = function() {
+
+		$http({
+			method: 'GET',
+			url: '/api/x_8481_delta/deltaportalapi/getwidgets'
+		}).success(function(dat, status) {
+
+		data.widgets = dat.result;
+			
+		}).error(function(dat, status) {
+		});
+	};
+	
+	}]]&gt;&lt;/script&gt;&lt;sys_class_name&gt;sp_angular_provider&lt;/sys_class_name&gt;&lt;sys_created_by&gt;brichards99&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2020-02-12 21:31:40&lt;/sys_created_on&gt;&lt;sys_id&gt;61fb9c3fdb320010bdf72bfa4b9619ac&lt;/sys_id&gt;&lt;sys_mod_count&gt;0&lt;/sys_mod_count&gt;&lt;sys_name&gt;DeltaPortalSvc&lt;/sys_name&gt;&lt;sys_package display_value="Delta" source="x_8481_delta"&gt;89c51077db320010bdf72bfa4b961992&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_scope display_value="Delta"&gt;89c51077db320010bdf72bfa4b961992&lt;/sys_scope&gt;&lt;sys_update_name&gt;sp_angular_provider_61fb9c3fdb320010bdf72bfa4b9619ac&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;brichards99&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2020-02-12 21:31:40&lt;/sys_updated_on&gt;&lt;type&gt;service&lt;/type&gt;&lt;/sp_angular_provider&gt;&lt;/record_update&gt;</payload><payload_hash>258462423</payload_hash><remote_update_set display_value="Delta">8def4cdddb67401048f570e2399619c3</remote_update_set><replace_on_upgrade>false</replace_on_upgrade><sys_created_by>admin</sys_created_by><sys_created_on>2020-03-13 09:00:02</sys_created_on><sys_id>01ef8cdddb67401048f570e239961999</sys_id><sys_mod_count>0</sys_mod_count><sys_recorded_at>170cf0937580000001</sys_recorded_at><sys_updated_by>admin</sys_updated_by><sys_updated_on>2020-03-13 09:00:02</sys_updated_on><table/><target_name>DeltaPortalSvc</target_name><type>Widget Angular Provider</type><update_domain>global</update_domain><update_guid>6e3cd07fe7320010ac102e7d288d4708</update_guid><update_guid_history>6e3cd07fe7320010ac102e7d288d4708:258462423</update_guid_history><update_set/><view/></sys_update_xml><sys_update_xml action="INSERT_OR_UPDATE"><action>INSERT_OR_UPDATE</action><application display_value="Delta">89c51077db320010bdf72bfa4b961992</application><category>customer</category><comments/><name>sp_widget_590b543fdb320010bdf72bfa4b9619db</name><payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update table="sp_widget"&gt;&lt;sp_widget action="INSERT_OR_UPDATE"&gt;&lt;category&gt;custom&lt;/category&gt;&lt;client_script&gt;&lt;![CDATA[function() {  /* widget controller */  var c = this;}]]&gt;&lt;/client_script&gt;&lt;controller_as&gt;c&lt;/controller_as&gt;&lt;css/&gt;&lt;data_table&gt;sp_instance&lt;/data_table&gt;&lt;demo_data/&gt;&lt;description/&gt;&lt;docs/&gt;&lt;field_list/&gt;&lt;has_preview&gt;false&lt;/has_preview&gt;&lt;id&gt;pages_widget&lt;/id&gt;&lt;internal&gt;false&lt;/internal&gt;&lt;link&gt;&lt;![CDATA[function link(scope, element, attrs, controller) {  }]]&gt;&lt;/link&gt;&lt;name&gt;Pages Widget&lt;/name&gt;&lt;option_schema/&gt;&lt;public&gt;false&lt;/public&gt;&lt;roles/&gt;&lt;script&gt;&lt;![CDATA[(function() {  /* populate the 'data' object */  /* e.g., data.table = $sp.getValue('table'); */})();]]&gt;&lt;/script&gt;&lt;servicenow&gt;false&lt;/servicenow&gt;&lt;sys_class_name&gt;sp_widget&lt;/sys_class_name&gt;&lt;sys_created_by&gt;brichards99&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2020-02-12 21:26:24&lt;/sys_created_on&gt;&lt;sys_id&gt;590b543fdb320010bdf72bfa4b9619db&lt;/sys_id&gt;&lt;sys_mod_count&gt;2&lt;/sys_mod_count&gt;&lt;sys_name&gt;Pages Widget&lt;/sys_name&gt;&lt;sys_package display_value="Delta" source="x_8481_delta"&gt;89c51077db320010bdf72bfa4b961992&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_scope display_value="Delta"&gt;89c51077db320010bdf72bfa4b961992&lt;/sys_scope&gt;&lt;sys_update_name&gt;sp_widget_590b543fdb320010bdf72bfa4b9619db&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;brichards99&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2020-02-13 14:45:09&lt;/sys_updated_on&gt;&lt;template&gt;&lt;![CDATA[&lt;div&gt;
+  &lt;table class="table table-bordered"&gt;
+    &lt;thead&gt;
+      &lt;tr&gt;
+        &lt;th&gt;&lt;/th&gt;
+        &lt;th&gt;Title&lt;/th&gt;
+        &lt;th&gt;ID&lt;/th&gt;
+        &lt;th&gt;Public?&lt;/th&gt;
+        &lt;th&gt;Draft?&lt;/th&gt;        
+      &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody ng-repeat="sp_page in $root.config.pages"&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;a href="{{sp_page.editLink}}" target="_blank"&gt;{{sp_page.title}}&lt;/a&gt;&lt;/td&gt;
+      &lt;td&gt;{{sp_page.id}}&lt;/td&gt;
+      &lt;td&gt;{{sp_page.public}}&lt;/td&gt;
+      &lt;td&gt;{{sp_page.draft}}&lt;/td&gt;            
+    &lt;/tr&gt;
+    &lt;/tbody&gt;
+  &lt;/table&gt; 
+&lt;/div&gt;
+
+&lt;!--
+Note that the data objects used here were loaded in the 'home widget' and writtedn to the variable $rootscope.config.
+
+$rootScope is referenced in HTML as $root.
+
+--&gt;]]&gt;&lt;/template&gt;&lt;/sp_widget&gt;&lt;/record_update&gt;</payload><payload_hash>-805586561</payload_hash><remote_update_set display_value="Delta">8def4cdddb67401048f570e2399619c3</remote_update_set><replace_on_upgrade>false</replace_on_upgrade><sys_created_by>admin</sys_created_by><sys_created_on>2020-03-13 09:00:03</sys_created_on><sys_id>09ef8cdddb67401048f570e23996199a</sys_id><sys_mod_count>0</sys_mod_count><sys_recorded_at>170cf0937b60000001</sys_recorded_at><sys_updated_by>admin</sys_updated_by><sys_updated_on>2020-03-13 09:00:03</sys_updated_on><table/><target_name>Pages Widget</target_name><type>Widget</type><update_domain>global</update_domain><update_guid>edc88880a00300100acf8203c8169d96</update_guid><update_guid_history>edc88880a00300100acf8203c8169d96:-805586561,971b543f9e320010f5646a126328e6a1:-1731913287,d90b543f68320010bf13381797fa3cdc:-1731119011</update_guid_history><update_set/><view/></sys_update_xml><sys_update_xml action="INSERT_OR_UPDATE"><action>INSERT_OR_UPDATE</action><application display_value="Delta">89c51077db320010bdf72bfa4b961992</application><category>customer</category><comments/><name>sp_page_39a99c7bdb320010bdf72bfa4b961974</name><payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_page"><sp_page action="INSERT_OR_UPDATE"><category>custom</category><css/><draft>false</draft><dynamic_title_structure/><id>delta_home</id><internal>false</internal><public>false</public><roles/><short_description/><sys_class_name>sp_page</sys_class_name><sys_created_by>brichards99</sys_created_by><sys_created_on>2020-02-12 21:20:25</sys_created_on><sys_id>39a99c7bdb320010bdf72bfa4b961974</sys_id><sys_mod_count>0</sys_mod_count><sys_name>delta_home</sys_name><sys_package display_value="Delta" source="x_8481_delta">89c51077db320010bdf72bfa4b961992</sys_package><sys_policy/><sys_scope display_value="Delta">89c51077db320010bdf72bfa4b961992</sys_scope><sys_update_name>sp_page_39a99c7bdb320010bdf72bfa4b961974</sys_update_name><sys_updated_by>brichards99</sys_updated_by><sys_updated_on>2020-02-12 21:20:25</sys_updated_on><title>Delta Home</title></sp_page><sys_translated_text action="delete_multiple" query="documentkey=39a99c7bdb320010bdf72bfa4b961974"/></record_update>]]></payload><payload_hash>-1415016023</payload_hash><remote_update_set display_value="Delta">8def4cdddb67401048f570e2399619c3</remote_update_set><replace_on_upgrade>false</replace_on_upgrade><sys_created_by>admin</sys_created_by><sys_created_on>2020-03-13 09:00:02</sys_created_on><sys_id>0def8cdddb67401048f570e239961999</sys_id><sys_mod_count>0</sys_mod_count><sys_recorded_at>170cf0937510000001</sys_recorded_at><sys_updated_by>admin</sys_updated_by><sys_updated_on>2020-03-13 09:00:02</sys_updated_on><table/><target_name>delta_home</target_name><type>Page</type><update_domain>global</update_domain><update_guid>35a99c7b71320010196c0d2698e44476</update_guid><update_guid_history>35a99c7b71320010196c0d2698e44476:-1415016023</update_guid_history><update_set/><view/></sys_update_xml><sys_update_xml action="INSERT_OR_UPDATE"><action>INSERT_OR_UPDATE</action><application display_value="Delta">89c51077db320010bdf72bfa4b961992</application><category>customer</category><comments/><name>sys_scope_privilege_619d58bfdb320010bdf72bfa4b9619b8</name><payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_scope_privilege"><sys_scope_privilege action="INSERT_OR_UPDATE"><operation>read</operation><source_scope display_value="Delta">89c51077db320010bdf72bfa4b961992</source_scope><status>allowed</status><sys_class_name>sys_scope_privilege</sys_class_name><sys_created_by>brichards99</sys_created_by><sys_created_on>2020-02-12 21:37:36</sys_created_on><sys_id>619d58bfdb320010bdf72bfa4b9619b8</sys_id><sys_mod_count>0</sys_mod_count><sys_name>m2m_sp_portal_catalog</sys_name><sys_package display_value="Delta" source="x_8481_delta">89c51077db320010bdf72bfa4b961992</sys_package><sys_policy/><sys_scope display_value="Delta">89c51077db320010bdf72bfa4b961992</sys_scope><sys_update_name>sys_scope_privilege_619d58bfdb320010bdf72bfa4b9619b8</sys_update_name><sys_updated_by>brichards99</sys_updated_by><sys_updated_on>2020-02-12 21:37:36</sys_updated_on><target_name>m2m_sp_portal_catalog</target_name><target_scope display_value="Global">global</target_scope><target_type>sys_db_object</target_type></sys_scope_privilege></record_update>]]></payload><payload_hash>-1515994415</payload_hash><remote_update_set display_value="Delta">8def4cdddb67401048f570e2399619c3</remote_update_set><replace_on_upgrade>false</replace_on_upgrade><sys_created_by>admin</sys_created_by><sys_created_on>2020-03-13 09:00:03</sys_created_on><sys_id>11ef8cdddb67401048f570e23996199c</sys_id><sys_mod_count>0</sys_mod_count><sys_recorded_at>170cf09378c0000001</sys_recorded_at><sys_updated_by>admin</sys_updated_by><sys_updated_on>2020-03-13 09:00:03</sys_updated_on><table/><target_name>m2m_sp_portal_catalog</target_name><type>Cross scope privilege</type><update_domain>global</update_domain><update_guid>2d9d58bfa2320010f31af584fffcdeb8</update_guid><update_guid_history>2d9d58bfa2320010f31af584fffcdeb8:-1515994415</update_guid_history><update_set/><view/></sys_update_xml><sys_update_xml action="INSERT_OR_UPDATE"><action>INSERT_OR_UPDATE</action><application display_value="Delta">89c51077db320010bdf72bfa4b961992</application><category>customer</category><comments/><name>sys_app_89c51077db320010bdf72bfa4b961992</name><payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_app"><sys_app action="INSERT_OR_UPDATE"><active>true</active><can_edit_in_studio>false</can_edit_in_studio><enforce_license>none</enforce_license><js_level>helsinki_es5</js_level><licensable>true</licensable><license_category>none</license_category><license_model>none</license_model><logo/><menu/><name>Delta</name><private>false</private><restrict_table_access>false</restrict_table_access><runtime_access_tracking>permissive</runtime_access_tracking><scope>x_8481_delta</scope><scoped_administration>false</scoped_administration><short_description/><source>x_8481_delta</source><store_correlation_id/><store_url/><sys_class_name>sys_app</sys_class_name><sys_code/><sys_created_by>brichards99</sys_created_by><sys_created_on>2020-02-12 21:03:27</sys_created_on><sys_id>89c51077db320010bdf72bfa4b961992</sys_id><sys_mod_count>1</sys_mod_count><sys_updated_by>brichards99</sys_updated_by><sys_updated_on>2020-02-19 15:30:46</sys_updated_on><template/><trackable>true</trackable><user_role/><vendor/><vendor_prefix/><version>1.1.0</version></sys_app></record_update>]]></payload><payload_hash>-1560727547</payload_hash><remote_update_set display_value="Delta">8def4cdddb67401048f570e2399619c3</remote_update_set><replace_on_upgrade>false</replace_on_upgrade><sys_created_by>admin</sys_created_by><sys_created_on>2020-03-13 09:00:03</sys_created_on><sys_id>15ef8cdddb67401048f570e23996199b</sys_id><sys_mod_count>0</sys_mod_count><sys_recorded_at>170cf09370d0000001</sys_recorded_at><sys_updated_by>admin</sys_updated_by><sys_updated_on>2020-03-13 09:00:03</sys_updated_on><table/><target_name>Delta</target_name><type>Custom Application</type><update_domain>global</update_domain><update_guid>94cccb79ff0300103b9b2f9dbd0cfa2c</update_guid><update_guid_history>94cccb79ff0300103b9b2f9dbd0cfa2c:-1560727547,ddc514f7d4320010557d9068b816e3c6:-638043964</update_guid_history><update_set/><view/></sys_update_xml><sys_update_xml action="INSERT_OR_UPDATE"><action>INSERT_OR_UPDATE</action><application display_value="Delta">89c51077db320010bdf72bfa4b961992</application><category>customer</category><comments/><name>sys_ws_operation_3b39987bdb320010bdf72bfa4b9619fa</name><payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update table="sys_ws_operation"&gt;&lt;sys_ws_operation action="INSERT_OR_UPDATE"&gt;&lt;active&gt;true&lt;/active&gt;&lt;consumes&gt;application/json,application/xml,text/xml&lt;/consumes&gt;&lt;consumes_customized&gt;false&lt;/consumes_customized&gt;&lt;default_operation_uri/&gt;&lt;enforce_acl&gt;cf9d01d3e73003009d6247e603f6a990&lt;/enforce_acl&gt;&lt;http_method&gt;GET&lt;/http_method&gt;&lt;name&gt;getWidgets&lt;/name&gt;&lt;operation_script&gt;&lt;![CDATA[(function process(/*RESTAPIRequest*/ request, /*RESTAPIResponse*/ response) {
+	
+	// implement resource here
+	
+	return DeltaSPUtils.getWidgets();
+	
+})(request, response);]]&gt;&lt;/operation_script&gt;&lt;operation_uri&gt;/api/x_8481_delta/deltaportalapi/getwidgets&lt;/operation_uri&gt;&lt;produces&gt;application/json,application/xml,text/xml&lt;/produces&gt;&lt;produces_customized&gt;false&lt;/produces_customized&gt;&lt;relative_path&gt;/getwidgets&lt;/relative_path&gt;&lt;request_example/&gt;&lt;requires_acl_authorization&gt;true&lt;/requires_acl_authorization&gt;&lt;requires_authentication&gt;true&lt;/requires_authentication&gt;&lt;requires_snc_internal_role&gt;true&lt;/requires_snc_internal_role&gt;&lt;short_description/&gt;&lt;sys_class_name&gt;sys_ws_operation&lt;/sys_class_name&gt;&lt;sys_created_by&gt;brichards99&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2020-02-12 21:18:38&lt;/sys_created_on&gt;&lt;sys_id&gt;3b39987bdb320010bdf72bfa4b9619fa&lt;/sys_id&gt;&lt;sys_mod_count&gt;0&lt;/sys_mod_count&gt;&lt;sys_name&gt;getWidgets&lt;/sys_name&gt;&lt;sys_package display_value="Delta" source="x_8481_delta"&gt;89c51077db320010bdf72bfa4b961992&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_scope display_value="Delta"&gt;89c51077db320010bdf72bfa4b961992&lt;/sys_scope&gt;&lt;sys_update_name&gt;sys_ws_operation_3b39987bdb320010bdf72bfa4b9619fa&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;brichards99&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2020-02-12 21:18:38&lt;/sys_updated_on&gt;&lt;web_service_definition display_value="DeltaPortalAPI"&gt;3d86503bdb320010bdf72bfa4b9619ff&lt;/web_service_definition&gt;&lt;web_service_version/&gt;&lt;/sys_ws_operation&gt;&lt;/record_update&gt;</payload><payload_hash>-686248164</payload_hash><remote_update_set display_value="Delta">8def4cdddb67401048f570e2399619c3</remote_update_set><replace_on_upgrade>false</replace_on_upgrade><sys_created_by>admin</sys_created_by><sys_created_on>2020-03-13 09:00:03</sys_created_on><sys_id>19ef8cdddb67401048f570e23996199d</sys_id><sys_mod_count>0</sys_mod_count><sys_recorded_at>170cf0937430000001</sys_recorded_at><sys_updated_by>admin</sys_updated_by><sys_updated_on>2020-03-13 09:00:03</sys_updated_on><table/><target_name>getWidgets</target_name><type>Scripted REST Resource</type><update_domain>global</update_domain><update_guid>f739987b9a32001062e16897fdad14fb</update_guid><update_guid_history>f739987b9a32001062e16897fdad14fb:-686248164</update_guid_history><update_set/><view/></sys_update_xml><sys_update_xml action="INSERT_OR_UPDATE"><action>INSERT_OR_UPDATE</action><application display_value="Delta">89c51077db320010bdf72bfa4b961992</application><category>customer</category><comments/><name>sys_script_include_92f598f7db320010bdf72bfa4b96192a</name><payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update table="sys_script_include"&gt;&lt;sys_script_include action="INSERT_OR_UPDATE"&gt;&lt;access&gt;package_private&lt;/access&gt;&lt;active&gt;true&lt;/active&gt;&lt;api_name&gt;x_8481_delta.DeltaSPUtils&lt;/api_name&gt;&lt;client_callable&gt;false&lt;/client_callable&gt;&lt;description/&gt;&lt;name&gt;DeltaSPUtils&lt;/name&gt;&lt;script&gt;&lt;![CDATA[var DeltaSPUtils = Class.create();
+
+DeltaSPUtils.loadData = function(){
+	var summary = {
+		portals: 0,
+		widgets: 0,
+		pages: 0
+	};
+	var portals = {};
+	var portalCount = 0;
+	var pages = {};
+	var widgets = {};
+	};
+
+
+DeltaSPUtils.getPortalStats = function() {
+	output = {
+		'portals': 0,
+		'widgets': 0,
+		'pages' : 0
+	};
+	
+	var grPortal = new GlideRecord('sp_portal');
+	grPortal.query();
+	output.portals = grPortal.getRowCount();
+	
+	var grWidget = new GlideRecord('sp_widget');
+	grWidget.query();
+	output.widgets = grWidget.getRowCount();
+	
+	var grPages = new GlideRecord('sp_page');
+	grPages.query();
+	output.pages = grPages.getRowCount();
+	
+	
+	return output;
+	
+};
+
+DeltaSPUtils.getPortals = function() {
+	
+	var records = [];
+	var grPortalList = new GlideRecord('sp_portal');
+	grPortalList.orderBy('title');
+	grPortalList.query();
+	
+	while(grPortalList.next()){
+		var record = {
+			"sysID" : grPortalList.getValue('sys_id'),
+			"title" :  grPortalList.title.getDisplayValue(),
+			"scope" : grPortalList.sys_scope.getDisplayValue(),
+			"url_suffix" : grPortalList.url_suffix.getDisplayValue(),
+			"homepage" : grPortalList.homepage.getDisplayValue(),
+			"kb_knowledge_page" : grPortalList.kb_knowledge_page.getDisplayValue(),
+			"theme" : grPortalList.theme.getDisplayValue(),
+			"search_sources" : DeltaSPUtils.getSearchSources(grPortalList.sys_id),
+			"knowledge_bases" : DeltaSPUtils.getKnowledgeBases(grPortalList.sys_id),
+			"catalogs" : DeltaSPUtils.getCatalogs(grPortalList.sys_id),
+			"expanded" : false
+		};
+		records.push(record);
+	}
+	
+	return records;
+	
+};
+
+DeltaSPUtils.getSearchSources = function(portal) {
+	var records = [];
+	var grSearchSource = new GlideRecord('m2m_sp_portal_search_source');
+	grSearchSource.addQuery('sp_portal',portal);
+	grSearchSource.query();
+	while(grSearchSource.next()){
+		var record = {
+			"source" :  grSearchSource.sp_search_source.getDisplayValue(),
+			"sp_portal" : grSearchSource.sp_portal.getDisplayValue()
+		};
+		records.push(record);
+	}
+	return records;
+};
+
+DeltaSPUtils.getKnowledgeBases = function(portal) {
+	var records = [];
+	var grKB = new GlideRecord('m2m_sp_portal_knowledge_base');
+	grKB.addQuery('sp_portal',portal);
+	grKB.query();
+	while(grKB.next()){
+		var record = {
+			"knowledgebase" :  grKB.kb_knowledge_base.getDisplayValue(),
+			"sp_portal" : grKB.sp_portal.getDisplayValue(),
+			"active" : grKB.active.getDisplayValue(),
+			"order" : grKB.order.getDisplayValue()
+		};
+		records.push(record);
+	}
+	return records;
+};
+
+DeltaSPUtils.getCatalogs = function(portal) {
+	var records = [];
+	var grCatalogs = new GlideRecord('m2m_sp_portal_catalog');
+	grCatalogs.addQuery('sp_portal',portal);
+	grCatalogs.query();
+	while(grCatalogs.next()){
+		var record = {
+			"catalog" :  grCatalogs.sc_catalog.getDisplayValue(),
+			"sp_portal" : grCatalogs.sp_portal.getDisplayValue(),
+			"active" : grCatalogs.active.getDisplayValue(),
+			"order" : grCatalogs.order.getDisplayValue()
+		};
+		records.push(record);
+	}
+	return records;
+};
+
+/*****************************************************
+ ****************************************************/
+DeltaSPUtils.getPages = function() {
+	var baseURL = '$spd.do#/sp/editor/';
+	var records = [];
+	var grPages = new GlideRecord('sp_page');
+	grPages.orderBy('title');
+	grPages.query();
+	
+	while(grPages.next()){
+		var record = {
+			"title" :  grPages.title.getDisplayValue(),
+			"id" : grPages.getValue('id'),
+			"public" : grPages.getDisplayValue('public') ,
+			"draft" : grPages.getDisplayValue('draft'),
+			"editLink" : baseURL + grPages.getValue('id') + '/'
+		};
+		records.push(record);
+	}
+	
+	return records;
+	
+};
+
+/*****************************************************
+ ****************************************************/
+DeltaSPUtils.getWidgets = function() {
+	var baseURL = gs.getProperty('glide.servlet.uri') + 'sp_config?id=widget_editor&amp;sys_id=';
+	
+	var records = [];
+	var grWidgets = new GlideRecord('sp_widget');
+	grWidgets.orderBy('name');
+	grWidgets.query();
+	
+	while(grWidgets.next()){
+		var record = {
+			"name" :  grWidgets.getDisplayValue('name'),
+			"id" : grWidgets.getValue('id'),
+			"public" : grWidgets.getDisplayValue('public'),
+			"editLink" : baseURL + grWidgets.sys_id
+		};
+		records.push(record);
+	}
+	
+	return records;
+	
+};]]&gt;&lt;/script&gt;&lt;sys_class_name&gt;sys_script_include&lt;/sys_class_name&gt;&lt;sys_created_by&gt;brichards99&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2020-02-12 21:05:10&lt;/sys_created_on&gt;&lt;sys_id&gt;92f598f7db320010bdf72bfa4b96192a&lt;/sys_id&gt;&lt;sys_mod_count&gt;4&lt;/sys_mod_count&gt;&lt;sys_name&gt;DeltaSPUtils&lt;/sys_name&gt;&lt;sys_package display_value="Delta" source="x_8481_delta"&gt;89c51077db320010bdf72bfa4b961992&lt;/sys_package&gt;&lt;sys_policy&gt;read&lt;/sys_policy&gt;&lt;sys_scope display_value="Delta"&gt;89c51077db320010bdf72bfa4b961992&lt;/sys_scope&gt;&lt;sys_update_name&gt;sys_script_include_92f598f7db320010bdf72bfa4b96192a&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;brichards99&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2020-02-13 15:33:26&lt;/sys_updated_on&gt;&lt;/sys_script_include&gt;&lt;/record_update&gt;</payload><payload_hash>1194189743</payload_hash><remote_update_set display_value="Delta">8def4cdddb67401048f570e2399619c3</remote_update_set><replace_on_upgrade>false</replace_on_upgrade><sys_created_by>admin</sys_created_by><sys_created_on>2020-03-13 09:00:03</sys_created_on><sys_id>1def8cdddb67401048f570e23996199c</sys_id><sys_mod_count>0</sys_mod_count><sys_recorded_at>170cf0937c30000001</sys_recorded_at><sys_updated_by>admin</sys_updated_by><sys_updated_on>2020-03-13 09:00:03</sys_updated_on><table/><target_name>DeltaSPUtils</target_name><type>Script Include</type><update_domain>global</update_domain><update_guid>81d3d8489d030010602be0326f87e1b3</update_guid><update_guid_history>81d3d8489d030010602be0326f87e1b3:1194189743,35f19c080b030010e36291d632df5e95:782793721,8140d8c4b8030010932976696a253118:-564599034,ba6dd87faa3200106a71c40bd3aaf9d6:112785725,1a265077ae320010edfb2f9721db39b3:41298437</update_guid_history><update_set/><view/></sys_update_xml><sys_update_xml action="INSERT_OR_UPDATE"><action>INSERT_OR_UPDATE</action><application display_value="Delta">89c51077db320010bdf72bfa4b961992</application><category>customer</category><comments/><name>sp_widget_191a1cfbdb320010bdf72bfa4b9619aa</name><payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update table="sp_widget"&gt;&lt;sp_widget action="INSERT_OR_UPDATE"&gt;&lt;category&gt;custom&lt;/category&gt;&lt;client_script&gt;&lt;![CDATA[function(DeltaPortalSvc, spUtil, $rootScope) {
+	/* widget controller */
+	var c = this;
+	
+	c.selected = 'summary';	//Identifies which tab will be displayed first
+	
+	c.loadWidgetData = function(){
+		/*
+		These statements could be combined in the DeltaPortalSvc service to pull data all at once,
+		but they are separated for each widget in order make debugging an individual widget easier.
+		
+		It would be in most cases be better to do this on each individual widget, as refreshing data would
+		be easier on a more granular level. It's done here merely to demonstrate how much we can centralize
+		code in an application built like this, writing data to $rootScope.
+		
+ 		*/
+		DeltaPortalSvc.getPortals();
+		DeltaPortalSvc.getPages();
+		DeltaPortalSvc.getWidgets();
+		DeltaPortalSvc.getPortalStats();
+		//console.log($rootScope.config);
+		
+	};
+	
+	c.createWidgetObjects = function(){
+		/*
+		These widget objects could also be created in the server script using a different syntax. For example:
+		data.widget_portal_list = $sp.getWidget("portals_widget-sc-cat-item");
+		
+		For this widget there is no value either way since the widgets do not change. The client controller was chosen simply to keep all the code
+		in one place.
+		
+ 		*/
+		
+		spUtil.get("portals_widget", {}).then(function(response) {
+			c.widget_portal_list = response;
+		});
+		
+		spUtil.get("portal_summary_widget", {}).then(function(response) {
+			c.widget_portal_summary = response;
+		});
+		
+		spUtil.get("pages_widget", {}).then(function(response) {
+			c.widget_page_list = response;
+		});
+		
+		spUtil.get("widgets_widget", {}).then(function(response) {
+			c.widget_widget_list = response;
+		});
+	};
+	
+	
+	$rootScope.config = DeltaPortalSvc.loadData(); //loads empty objects from the DeltaPortalSvc service to be used by the application
+	c.loadWidgetData(); //Retrieves values to populate those objects so that the embedded widgets have something to display
+	c.createWidgetObjects();  //Creates the widget objects that will be used in the HTML block
+	
+	
+}]]&gt;&lt;/client_script&gt;&lt;controller_as&gt;c&lt;/controller_as&gt;&lt;css&gt;.tab-container {&amp;#13;
+ 	border: 1px solid black; &amp;#13;
+  	padding: 5px;&amp;#13;
+}&lt;/css&gt;&lt;data_table&gt;sp_instance&lt;/data_table&gt;&lt;demo_data/&gt;&lt;description/&gt;&lt;docs/&gt;&lt;field_list/&gt;&lt;has_preview&gt;false&lt;/has_preview&gt;&lt;id&gt;delta_home_widget&lt;/id&gt;&lt;internal&gt;false&lt;/internal&gt;&lt;link&gt;&lt;![CDATA[function link(scope, element, attrs, controller) {  }]]&gt;&lt;/link&gt;&lt;name&gt;Delta Home Widget&lt;/name&gt;&lt;option_schema/&gt;&lt;public&gt;false&lt;/public&gt;&lt;roles/&gt;&lt;script&gt;&lt;![CDATA[(function() {  /* populate the 'data' object */  /* e.g., data.table = $sp.getValue('table'); */})();]]&gt;&lt;/script&gt;&lt;servicenow&gt;false&lt;/servicenow&gt;&lt;sys_class_name&gt;sp_widget&lt;/sys_class_name&gt;&lt;sys_created_by&gt;brichards99&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2020-02-12 21:22:17&lt;/sys_created_on&gt;&lt;sys_id&gt;191a1cfbdb320010bdf72bfa4b9619aa&lt;/sys_id&gt;&lt;sys_mod_count&gt;9&lt;/sys_mod_count&gt;&lt;sys_name&gt;Delta Home Widget&lt;/sys_name&gt;&lt;sys_package display_value="Delta" source="x_8481_delta"&gt;89c51077db320010bdf72bfa4b961992&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_scope display_value="Delta"&gt;89c51077db320010bdf72bfa4b961992&lt;/sys_scope&gt;&lt;sys_update_name&gt;sp_widget_191a1cfbdb320010bdf72bfa4b9619aa&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;brichards99&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2020-02-13 15:34:12&lt;/sys_updated_on&gt;&lt;template&gt;&lt;![CDATA[&lt;div class="tabs"&gt;
+
+    &lt;button type="button" class="btn btn-default" ng-click="c.selected='summary'"&gt;Summary&lt;/button&gt;
+		&lt;button type="button" class="btn btn-default" ng-click="c.selected='portals'"&gt;Portals&lt;/button&gt;
+		&lt;button type="button" class="btn btn-default" ng-click="c.selected='pages'"&gt;Pages&lt;/button&gt;
+  	&lt;button type="button" class="btn btn-default" ng-click="c.selected='widgets'"&gt;Widgets&lt;/button&gt;
+  
+  	&lt;div class="tab-container"&gt;
+
+    &lt;div id="summary" class="tab-content" ng-if="c.selected == 'summary'"&gt;
+        &lt;h3&gt;Summary&lt;/h3&gt;
+        &lt;sp-widget widget="c.widget_portal_summary"&gt;&lt;/sp-widget&gt;
+    &lt;/div&gt; 
+    &lt;div id="portals" class="tab-content" ng-if="c.selected == 'portals'"&gt;
+        &lt;h3&gt;All Portals&lt;/h3&gt;
+        &lt;sp-widget widget="c.widget_portal_list"&gt;&lt;/sp-widget&gt;
+    &lt;/div&gt; 
+    &lt;div id="pages" class="tab-content" ng-if="c.selected == 'pages'"&gt;
+        &lt;h3&gt;Portal Pages&lt;/h3&gt;
+        &lt;sp-widget widget="c.widget_page_list"&gt;&lt;/sp-widget&gt;
+    &lt;/div&gt; 
+    &lt;div id="widgets" class="tab-content" ng-if="c.selected == 'widgets'"&gt;
+        &lt;h3&gt;Portal Widgets&lt;/h3&gt;
+        &lt;sp-widget widget="c.widget_widget_list"&gt;&lt;/sp-widget&gt;
+    &lt;/div&gt; 
+      
+  &lt;/div&gt;  
+  
+&lt;/div&gt;]]&gt;&lt;/template&gt;&lt;/sp_widget&gt;&lt;/record_update&gt;</payload><payload_hash>656527307</payload_hash><remote_update_set display_value="Delta">8def4cdddb67401048f570e2399619c3</remote_update_set><replace_on_upgrade>false</replace_on_upgrade><sys_created_by>admin</sys_created_by><sys_created_on>2020-03-13 09:00:03</sys_created_on><sys_id>45ef8cdddb67401048f570e23996199a</sys_id><sys_mod_count>0</sys_mod_count><sys_recorded_at>170cf0937ca0000001</sys_recorded_at><sys_updated_by>admin</sys_updated_by><sys_updated_on>2020-03-13 09:00:03</sys_updated_on><table/><target_name>Delta Home Widget</target_name><type>Widget</type><update_domain>global</update_domain><update_guid>8c045048c2030010d50ebd1ccf44deb3</update_guid><update_guid_history>8c045048c2030010d50ebd1ccf44deb3:656527307,7c8b40c0530300105248a528c21115a2:1002245355,9bfa4804350300102c0c343015bd1f1e:-1502481552,69eac40497030010526eda189bf4d49e:-177164720,3a02e873f772001089029d141279f1d7:-208038297,1ad124732a720010cd5693405a6bf3ff:514707266,d91f54ff6c32001067cd312bcbbca282:1604669144,76bc907fcf3200108789d8735b172188:-730202917,332a94fb8432001027ee14c1d3fd09c2:1128526513,9d1a1cfbbe320010ac8542317280e6ab:783415156</update_guid_history><update_set/><view/></sys_update_xml><sys_update_xml action="INSERT_OR_UPDATE"><action>INSERT_OR_UPDATE</action><application display_value="Delta">89c51077db320010bdf72bfa4b961992</application><category>customer</category><comments/><name>sp_instance_819d50bfdb320010bdf72bfa4b96196b</name><payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_instance"><sp_instance action="INSERT_OR_UPDATE"><active>true</active><class_name/><color>default</color><css/><glyph/><id/><order>1</order><roles/><short_description/><size>md</size><sp_column display_value="1">a78d18bfdb320010bdf72bfa4b96198a</sp_column><sp_widget display_value="Delta Home Widget">191a1cfbdb320010bdf72bfa4b9619aa</sp_widget><sys_class_name>sp_instance</sys_class_name><sys_created_by>brichards99</sys_created_by><sys_created_on>2020-02-12 21:37:35</sys_created_on><sys_id>819d50bfdb320010bdf72bfa4b96196b</sys_id><sys_mod_count>0</sys_mod_count><sys_name/><sys_package display_value="Delta" source="x_8481_delta">89c51077db320010bdf72bfa4b961992</sys_package><sys_policy/><sys_scope display_value="Delta">89c51077db320010bdf72bfa4b961992</sys_scope><sys_update_name>sp_instance_819d50bfdb320010bdf72bfa4b96196b</sys_update_name><sys_updated_by>brichards99</sys_updated_by><sys_updated_on>2020-02-12 21:37:35</sys_updated_on><title/><url/><widget_parameters/></sp_instance><sys_translated_text action="delete_multiple" query="documentkey=819d50bfdb320010bdf72bfa4b96196b"/></record_update>]]></payload><payload_hash>1915231308</payload_hash><remote_update_set display_value="Delta">8def4cdddb67401048f570e2399619c3</remote_update_set><replace_on_upgrade>false</replace_on_upgrade><sys_created_by>admin</sys_created_by><sys_created_on>2020-03-13 09:00:02</sys_created_on><sys_id>49ef8cdddb67401048f570e239961999</sys_id><sys_mod_count>0</sys_mod_count><sys_recorded_at>170cf09377d0000001</sys_recorded_at><sys_updated_by>admin</sys_updated_by><sys_updated_on>2020-03-13 09:00:02</sys_updated_on><table/><target_name/><type>Instance</type><update_domain>global</update_domain><update_guid>0d9d50bfdc32001025b19c7379d2a66c</update_guid><update_guid_history>0d9d50bfdc32001025b19c7379d2a66c:1915231308</update_guid_history><update_set/><view/></sys_update_xml><sys_update_xml action="INSERT_OR_UPDATE"><action>DELETE</action><application display_value="Delta">89c51077db320010bdf72bfa4b961992</application><category>customer</category><comments/><name>m2m_sp_ng_pro_sp_widget_d16b5c3fdb320010bdf72bfa4b961956</name><payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="m2m_sp_ng_pro_sp_widget"><m2m_sp_ng_pro_sp_widget action="DELETE"><sp_angular_provider display_value="bdrPortalSvc">1a8d1e23db710010bdf72bfa4b961980</sp_angular_provider><sp_widget display_value="Portals Widget">d16b5c3fdb320010bdf72bfa4b961954</sp_widget><sys_class_name>m2m_sp_ng_pro_sp_widget</sys_class_name><sys_created_by>brichards99</sys_created_by><sys_created_on>2020-02-12 21:28:02</sys_created_on><sys_id>d16b5c3fdb320010bdf72bfa4b961956</sys_id><sys_mod_count>0</sys_mod_count><sys_name>bdrPortalSvc.Copy of bdr_portal_list</sys_name><sys_package display_value="Delta" source="x_8481_delta">89c51077db320010bdf72bfa4b961992</sys_package><sys_policy/><sys_scope display_value="Delta">89c51077db320010bdf72bfa4b961992</sys_scope><sys_update_name>m2m_sp_ng_pro_sp_widget_d16b5c3fdb320010bdf72bfa4b961956</sys_update_name><sys_updated_by>brichards99</sys_updated_by><sys_updated_on>2020-02-12 21:28:02</sys_updated_on></m2m_sp_ng_pro_sp_widget></record_update>]]></payload><payload_hash>657202257</payload_hash><remote_update_set display_value="Delta">8def4cdddb67401048f570e2399619c3</remote_update_set><replace_on_upgrade>false</replace_on_upgrade><sys_created_by>admin</sys_created_by><sys_created_on>2020-03-13 09:00:02</sys_created_on><sys_id>4def8cdddb67401048f570e239961998</sys_id><sys_mod_count>0</sys_mod_count><sys_recorded_at>170cf0937d20000001</sys_recorded_at><sys_updated_by>admin</sys_updated_by><sys_updated_on>2020-03-13 09:00:02</sys_updated_on><table/><target_name>bdrPortalSvc.Copy of bdr_portal_list</target_name><type>Angular Providers</type><update_domain>global</update_domain><update_guid>8e2acf75120300109c95c7a07b62cdd9</update_guid><update_guid_history>8e2acf75120300109c95c7a07b62cdd9:657202257,996b5c3fd332001039fb5b68ff8c1357:-279225108</update_guid_history><update_set/><view/></sys_update_xml><sys_update_xml action="INSERT_OR_UPDATE"><action>INSERT_OR_UPDATE</action><application display_value="Delta">89c51077db320010bdf72bfa4b961992</application><category>customer</category><comments/><name>sp_widget_d16b5c3fdb320010bdf72bfa4b961954</name><payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update table="sp_widget"&gt;&lt;sp_widget action="INSERT_OR_UPDATE"&gt;&lt;category&gt;custom&lt;/category&gt;&lt;client_script&gt;&lt;![CDATA[function(spModal) {
+	/* widget controller */
+	var c = this;
+	
+	c.openRecord = function (sysId) {
+		spModal.open({
+			buttons: [],
+			widget: "widget-form",
+			widgetInput: {
+				table: "sp_portal",
+				sys_id: sysId
+			}
+		});
+	};
+}]]&gt;&lt;/client_script&gt;&lt;controller_as&gt;c&lt;/controller_as&gt;&lt;css/&gt;&lt;data_table&gt;sp_instance&lt;/data_table&gt;&lt;demo_data/&gt;&lt;description/&gt;&lt;docs/&gt;&lt;field_list/&gt;&lt;has_preview&gt;false&lt;/has_preview&gt;&lt;id&gt;portals_widget&lt;/id&gt;&lt;internal&gt;false&lt;/internal&gt;&lt;link&gt;&lt;![CDATA[function link(scope, element, attrs, controller) {  }]]&gt;&lt;/link&gt;&lt;name&gt;Portals Widget&lt;/name&gt;&lt;option_schema/&gt;&lt;public&gt;false&lt;/public&gt;&lt;roles/&gt;&lt;script&gt;&lt;![CDATA[(function() {  /* populate the 'data' object */  /* e.g., data.table = $sp.getValue('table'); */})();]]&gt;&lt;/script&gt;&lt;servicenow&gt;false&lt;/servicenow&gt;&lt;sys_class_name&gt;sp_widget&lt;/sys_class_name&gt;&lt;sys_created_by&gt;brichards99&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2020-02-12 21:28:02&lt;/sys_created_on&gt;&lt;sys_id&gt;d16b5c3fdb320010bdf72bfa4b961954&lt;/sys_id&gt;&lt;sys_mod_count&gt;15&lt;/sys_mod_count&gt;&lt;sys_name&gt;Portals Widget&lt;/sys_name&gt;&lt;sys_package display_value="Delta" source="x_8481_delta"&gt;89c51077db320010bdf72bfa4b961992&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_scope display_value="Delta"&gt;89c51077db320010bdf72bfa4b961992&lt;/sys_scope&gt;&lt;sys_update_name&gt;sp_widget_d16b5c3fdb320010bdf72bfa4b961954&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;brichards99&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2020-02-13 15:27:35&lt;/sys_updated_on&gt;&lt;template&gt;&lt;![CDATA[&lt;div&gt;
+  &lt;table class="table table-bordered"&gt;
+    &lt;thead&gt;
+      &lt;tr&gt;
+        &lt;th&gt;&lt;/th&gt;
+        &lt;th&gt;Title&lt;/th&gt;
+        &lt;th&gt;Scope&lt;/th&gt;
+        &lt;th&gt;Suffix&lt;/th&gt;
+      &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody ng-repeat="port in $root.config.portals"&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;span  ng-if="(port.search_sources.length + port.knowledge_bases.length + port.catalogs.length) &gt; 0"&gt;&lt;i class="fa fa-caret-square-o-down" aria-hidden="true" ng-click="port.expanded=!port.expanded"&gt;&lt;/i&gt;&lt;/span&gt;&lt;/td&gt;
+      &lt;td class="info"&gt;&lt;a href="javascript:void(0)" ng-click="c.openRecord(port.sysID)"&gt;{{port.title}}&lt;/a&gt;&lt;/td&gt;
+      &lt;td&gt;{{port.scope}}&lt;/td&gt;
+      &lt;td&gt;{{port.url_suffix}}&lt;/td&gt;      
+    &lt;/tr&gt;
+    &lt;tr ng-if="port.expanded &amp;&amp; ((port.search_sources.length + port.knowledge_bases.length + port.catalogs.length) &gt; 0)"&gt;
+      &lt;td&gt;&lt;/td&gt;
+      &lt;td class="warning"&gt;
+        &lt;div ng-if="port.search_sources.length &gt; 0"&gt;&lt;span class="label label-success"&gt;Search Sources ({{port.search_sources.length}})&lt;/span&gt;&lt;/div&gt;
+        &lt;div ng-repeat="srch in port.search_sources"&gt;{{srch.source}}&lt;/div&gt;&lt;/td&gt;
+      &lt;td class="warning"&gt;
+        &lt;div ng-if="port.knowledge_bases.length &gt; 0"&gt;&lt;span class="label label-success"&gt;Knowledge Bases ({{port.knowledge_bases.length}})&lt;/span&gt;&lt;/div&gt;
+        &lt;div ng-repeat="kb in port.knowledge_bases"&gt;{{kb.knowledgebase}}&lt;/div&gt;&lt;/td&gt;
+      &lt;td class="warning"&gt;
+        &lt;div ng-if="port.catalogs.length &gt; 0"&gt;&lt;span class="label label-success"&gt;Catalogs ({{port.catalogs.length}})&lt;/span&gt;&lt;/div&gt;
+        &lt;div ng-repeat="cat in port.catalogs"&gt;{{cat.catalog}}&lt;/div&gt;&lt;/td&gt;         
+      &lt;/tr&gt;
+    &lt;/tbody&gt;
+  &lt;/table&gt;
+&lt;/div&gt;
+
+&lt;!--
+Note that the data objects used here were loaded in the 'home widget' and writtedn to the variable $rootscope.config.
+
+$rootScope is referenced in HTML as $root.
+
+--&gt;]]&gt;&lt;/template&gt;&lt;/sp_widget&gt;&lt;/record_update&gt;</payload><payload_hash>1099756488</payload_hash><remote_update_set display_value="Delta">8def4cdddb67401048f570e2399619c3</remote_update_set><replace_on_upgrade>false</replace_on_upgrade><sys_created_by>admin</sys_created_by><sys_created_on>2020-03-13 09:00:03</sys_created_on><sys_id>51ef8cdddb67401048f570e23996199b</sys_id><sys_mod_count>0</sys_mod_count><sys_recorded_at>170cf0937bc0000001</sys_recorded_at><sys_updated_by>admin</sys_updated_by><sys_updated_on>2020-03-13 09:00:03</sys_updated_on><table/><target_name>Portals Widget</target_name><type>Widget</type><update_domain>global</update_domain><update_guid>c77298483903001046545be46d6f0de8</update_guid><update_guid_history>c77298483903001046545be46d6f0de8:1099756488,8462d848bf03001000aa90b71c8a220c:369148732,5a42d8485e030010f81dda57f76716c4:166663837,a522d808e30300106d4d45802590fb6e:148170461,d8be40c433030010831853dff1a79615:133883143,1a8ec484530300106e3b2025dab1daa5:-1662123395,931e0c84980300106de6a65f551ef11a:-1725652148,67adc48450030010feaa1fad83819a4c:-1273561005,56fcc8045c030010003863f769e261df:-1293183674,7c6c0444630300104f5d8a7b4ec3cafc:746796639,b3fbcc04bc030010690ba7deaea3ef90:-1073063382,77a840c098030010ea8fc13a71dd3406:-1566480136,3a51e073ca7200100426c4010b913465:218203552,2bccdc7fbc320010e63009bd0b356ce0:-1339587368,457bdc3f013200104264c01a84668351:-1542132324,556b5c3fb632001064d7980c6bc91f55:235073751</update_guid_history><update_set/><view/></sys_update_xml><sys_update_xml action="INSERT_OR_UPDATE"><action>INSERT_OR_UPDATE</action><application display_value="Delta">89c51077db320010bdf72bfa4b961992</application><category>customer</category><comments/><name>sys_ws_operation_3468147bdb320010bdf72bfa4b9619d4</name><payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update table="sys_ws_operation"&gt;&lt;sys_ws_operation action="INSERT_OR_UPDATE"&gt;&lt;active&gt;true&lt;/active&gt;&lt;consumes&gt;application/json,application/xml,text/xml&lt;/consumes&gt;&lt;consumes_customized&gt;false&lt;/consumes_customized&gt;&lt;default_operation_uri/&gt;&lt;enforce_acl&gt;cf9d01d3e73003009d6247e603f6a990&lt;/enforce_acl&gt;&lt;http_method&gt;GET&lt;/http_method&gt;&lt;name&gt;getPages&lt;/name&gt;&lt;operation_script&gt;&lt;![CDATA[(function process(/*RESTAPIRequest*/ request, /*RESTAPIResponse*/ response) {
+
+    // implement resource here
+
+	return DeltaSPUtils.getPages();
+	
+	
+	
+})(request, response);]]&gt;&lt;/operation_script&gt;&lt;operation_uri&gt;/api/x_8481_delta/deltaportalapi/getpages&lt;/operation_uri&gt;&lt;produces&gt;application/json,application/xml,text/xml&lt;/produces&gt;&lt;produces_customized&gt;false&lt;/produces_customized&gt;&lt;relative_path&gt;/getpages&lt;/relative_path&gt;&lt;request_example/&gt;&lt;requires_acl_authorization&gt;true&lt;/requires_acl_authorization&gt;&lt;requires_authentication&gt;true&lt;/requires_authentication&gt;&lt;requires_snc_internal_role&gt;true&lt;/requires_snc_internal_role&gt;&lt;short_description/&gt;&lt;sys_class_name&gt;sys_ws_operation&lt;/sys_class_name&gt;&lt;sys_created_by&gt;brichards99&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2020-02-12 21:15:12&lt;/sys_created_on&gt;&lt;sys_id&gt;3468147bdb320010bdf72bfa4b9619d4&lt;/sys_id&gt;&lt;sys_mod_count&gt;1&lt;/sys_mod_count&gt;&lt;sys_name&gt;getPages&lt;/sys_name&gt;&lt;sys_package display_value="Delta" source="x_8481_delta"&gt;89c51077db320010bdf72bfa4b961992&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_scope display_value="Delta"&gt;89c51077db320010bdf72bfa4b961992&lt;/sys_scope&gt;&lt;sys_update_name&gt;sys_ws_operation_3468147bdb320010bdf72bfa4b9619d4&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;brichards99&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2020-02-12 21:17:10&lt;/sys_updated_on&gt;&lt;web_service_definition display_value="DeltaPortalAPI"&gt;3d86503bdb320010bdf72bfa4b9619ff&lt;/web_service_definition&gt;&lt;web_service_version/&gt;&lt;/sys_ws_operation&gt;&lt;/record_update&gt;</payload><payload_hash>-1749727004</payload_hash><remote_update_set display_value="Delta">8def4cdddb67401048f570e2399619c3</remote_update_set><replace_on_upgrade>false</replace_on_upgrade><sys_created_by>admin</sys_created_by><sys_created_on>2020-03-13 09:00:03</sys_created_on><sys_id>55ef8cdddb67401048f570e23996199d</sys_id><sys_mod_count>0</sys_mod_count><sys_recorded_at>170cf0937350000001</sys_recorded_at><sys_updated_by>admin</sys_updated_by><sys_updated_on>2020-03-13 09:00:03</sys_updated_on><table/><target_name>getPages</target_name><type>Scripted REST Resource</type><update_domain>global</update_domain><update_guid>8ee8dcf77f320010ed5ef0a233d013c5</update_guid><update_guid_history>8ee8dcf77f320010ed5ef0a233d013c5:-1749727004,1978547b3e3200106e49b3314625e34b:1202027011</update_guid_history><update_set/><view/></sys_update_xml><sys_update_xml action="INSERT_OR_UPDATE"><action>INSERT_OR_UPDATE</action><application display_value="Delta">89c51077db320010bdf72bfa4b961992</application><category>customer</category><comments/><name>sys_scope_privilege_e99d58bfdb320010bdf72bfa4b9619b4</name><payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_scope_privilege"><sys_scope_privilege action="INSERT_OR_UPDATE"><operation>read</operation><source_scope display_value="Delta">89c51077db320010bdf72bfa4b961992</source_scope><status>allowed</status><sys_class_name>sys_scope_privilege</sys_class_name><sys_created_by>brichards99</sys_created_by><sys_created_on>2020-02-12 21:37:36</sys_created_on><sys_id>e99d58bfdb320010bdf72bfa4b9619b4</sys_id><sys_mod_count>0</sys_mod_count><sys_name>m2m_sp_portal_search_source</sys_name><sys_package display_value="Delta" source="x_8481_delta">89c51077db320010bdf72bfa4b961992</sys_package><sys_policy/><sys_scope display_value="Delta">89c51077db320010bdf72bfa4b961992</sys_scope><sys_update_name>sys_scope_privilege_e99d58bfdb320010bdf72bfa4b9619b4</sys_update_name><sys_updated_by>brichards99</sys_updated_by><sys_updated_on>2020-02-12 21:37:36</sys_updated_on><target_name>m2m_sp_portal_search_source</target_name><target_scope display_value="Global">global</target_scope><target_type>sys_db_object</target_type></sys_scope_privilege></record_update>]]></payload><payload_hash>-1876751311</payload_hash><remote_update_set display_value="Delta">8def4cdddb67401048f570e2399619c3</remote_update_set><replace_on_upgrade>false</replace_on_upgrade><sys_created_by>admin</sys_created_by><sys_created_on>2020-03-13 09:00:03</sys_created_on><sys_id>59ef8cdddb67401048f570e23996199c</sys_id><sys_mod_count>0</sys_mod_count><sys_recorded_at>170cf0937990000001</sys_recorded_at><sys_updated_by>admin</sys_updated_by><sys_updated_on>2020-03-13 09:00:03</sys_updated_on><table/><target_name>m2m_sp_portal_search_source</target_name><type>Cross scope privilege</type><update_domain>global</update_domain><update_guid>a59d58bf5b320010a526dfd1bc0443b5</update_guid><update_guid_history>a59d58bf5b320010a526dfd1bc0443b5:-1876751311</update_guid_history><update_set/><view/></sys_update_xml><sys_update_xml action="INSERT_OR_UPDATE"><action>INSERT_OR_UPDATE</action><application display_value="Delta">89c51077db320010bdf72bfa4b961992</application><category>customer</category><comments/><name>sys_scope_privilege_599d58bfdb320010bdf72bfa4b9619b2</name><payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_scope_privilege"><sys_scope_privilege action="INSERT_OR_UPDATE"><operation>read</operation><source_scope display_value="Delta">89c51077db320010bdf72bfa4b961992</source_scope><status>allowed</status><sys_class_name>sys_scope_privilege</sys_class_name><sys_created_by>brichards99</sys_created_by><sys_created_on>2020-02-12 21:37:36</sys_created_on><sys_id>599d58bfdb320010bdf72bfa4b9619b2</sys_id><sys_mod_count>0</sys_mod_count><sys_name>sp_portal</sys_name><sys_package display_value="Delta" source="x_8481_delta">89c51077db320010bdf72bfa4b961992</sys_package><sys_policy/><sys_scope display_value="Delta">89c51077db320010bdf72bfa4b961992</sys_scope><sys_update_name>sys_scope_privilege_599d58bfdb320010bdf72bfa4b9619b2</sys_update_name><sys_updated_by>brichards99</sys_updated_by><sys_updated_on>2020-02-12 21:37:36</sys_updated_on><target_name>sp_portal</target_name><target_scope display_value="Global">global</target_scope><target_type>sys_db_object</target_type></sys_scope_privilege></record_update>]]></payload><payload_hash>-1589033167</payload_hash><remote_update_set display_value="Delta">8def4cdddb67401048f570e2399619c3</remote_update_set><replace_on_upgrade>false</replace_on_upgrade><sys_created_by>admin</sys_created_by><sys_created_on>2020-03-13 09:00:03</sys_created_on><sys_id>5def8cdddb67401048f570e23996199b</sys_id><sys_mod_count>0</sys_mod_count><sys_recorded_at>170cf0937920000001</sys_recorded_at><sys_updated_by>admin</sys_updated_by><sys_updated_on>2020-03-13 09:00:03</sys_updated_on><table/><target_name>sp_portal</target_name><type>Cross scope privilege</type><update_domain>global</update_domain><update_guid>e59d58bff9320010075a9f14bfc3ffb3</update_guid><update_guid_history>e59d58bff9320010075a9f14bfc3ffb3:-1589033167</update_guid_history><update_set/><view/></sys_update_xml><sys_update_xml action="INSERT_OR_UPDATE"><action>DELETE</action><application display_value="Delta">89c51077db320010bdf72bfa4b961992</application><category>customer</category><comments/><name>m2m_sp_ng_pro_sp_widget_a88b5c3fdb320010bdf72bfa4b9619c6</name><payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="m2m_sp_ng_pro_sp_widget"><m2m_sp_ng_pro_sp_widget action="DELETE"><sp_angular_provider display_value="bdrPortalSvc">1a8d1e23db710010bdf72bfa4b961980</sp_angular_provider><sp_widget display_value="Portal Summary Widget">a88b5c3fdb320010bdf72bfa4b9619c4</sp_widget><sys_class_name>m2m_sp_ng_pro_sp_widget</sys_class_name><sys_created_by>brichards99</sys_created_by><sys_created_on>2020-02-12 21:28:32</sys_created_on><sys_id>a88b5c3fdb320010bdf72bfa4b9619c6</sys_id><sys_mod_count>0</sys_mod_count><sys_name>bdrPortalSvc.Copy of bdr_portal_summary</sys_name><sys_package display_value="Delta" source="x_8481_delta">89c51077db320010bdf72bfa4b961992</sys_package><sys_policy/><sys_scope display_value="Delta">89c51077db320010bdf72bfa4b961992</sys_scope><sys_update_name>m2m_sp_ng_pro_sp_widget_a88b5c3fdb320010bdf72bfa4b9619c6</sys_update_name><sys_updated_by>brichards99</sys_updated_by><sys_updated_on>2020-02-12 21:28:32</sys_updated_on></m2m_sp_ng_pro_sp_widget></record_update>]]></payload><payload_hash>-1998090394</payload_hash><remote_update_set display_value="Delta">8def4cdddb67401048f570e2399619c3</remote_update_set><replace_on_upgrade>false</replace_on_upgrade><sys_created_by>admin</sys_created_by><sys_created_on>2020-03-13 09:00:02</sys_created_on><sys_id>81ef8cdddb67401048f570e239961998</sys_id><sys_mod_count>0</sys_mod_count><sys_recorded_at>170cf0937da0000001</sys_recorded_at><sys_updated_by>admin</sys_updated_by><sys_updated_on>2020-03-13 09:00:02</sys_updated_on><table/><target_name>bdrPortalSvc.Copy of bdr_portal_summary</target_name><type>Angular Providers</type><update_domain>global</update_domain><update_guid>484ac3f596030010983830208e1f8b15</update_guid><update_guid_history>484ac3f596030010983830208e1f8b15:-1998090394,e88b5c3f6c3200100422f95cededbbc7:-379341098</update_guid_history><update_set/><view/></sys_update_xml><sys_update_xml action="INSERT_OR_UPDATE"><action>INSERT_OR_UPDATE</action><application display_value="Delta">89c51077db320010bdf72bfa4b961992</application><category>customer</category><comments/><name>sp_row_678d18bfdb320010bdf72bfa4b961988</name><payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_row"><sp_row action="INSERT_OR_UPDATE"><class_name/><order>1</order><sp_column/><sp_container display_value="Delta Home - Container 1">71a99c7bdb320010bdf72bfa4b961977</sp_container><sys_class_name>sp_row</sys_class_name><sys_created_by>brichards99</sys_created_by><sys_created_on>2020-02-12 21:37:28</sys_created_on><sys_id>678d18bfdb320010bdf72bfa4b961988</sys_id><sys_mod_count>0</sys_mod_count><sys_name>1</sys_name><sys_package display_value="Delta" source="x_8481_delta">89c51077db320010bdf72bfa4b961992</sys_package><sys_policy/><sys_scope display_value="Delta">89c51077db320010bdf72bfa4b961992</sys_scope><sys_update_name>sp_row_678d18bfdb320010bdf72bfa4b961988</sys_update_name><sys_updated_by>brichards99</sys_updated_by><sys_updated_on>2020-02-12 21:37:28</sys_updated_on></sp_row></record_update>]]></payload><payload_hash>848941236</payload_hash><remote_update_set display_value="Delta">8def4cdddb67401048f570e2399619c3</remote_update_set><replace_on_upgrade>false</replace_on_upgrade><sys_created_by>admin</sys_created_by><sys_created_on>2020-03-13 09:00:03</sys_created_on><sys_id>81ef8cdddb67401048f570e23996199a</sys_id><sys_mod_count>0</sys_mod_count><sys_recorded_at>170cf0937750000001</sys_recorded_at><sys_updated_by>admin</sys_updated_by><sys_updated_on>2020-03-13 09:00:03</sys_updated_on><table/><target_name>1</target_name><type>Row</type><update_domain>global</update_domain><update_guid>6b8d18bf6e320010fd62054faf0d8d89</update_guid><update_guid_history>6b8d18bf6e320010fd62054faf0d8d89:848941236</update_guid_history><update_set/><view/></sys_update_xml><sys_update_xml action="INSERT_OR_UPDATE"><action>INSERT_OR_UPDATE</action><application display_value="Delta">89c51077db320010bdf72bfa4b961992</application><category>customer</category><comments/><name>sp_container_71a99c7bdb320010bdf72bfa4b961977</name><payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_container"><sp_container action="INSERT_OR_UPDATE"><background_color/><background_image/><background_style>default</background_style><bootstrap_alt>false</bootstrap_alt><class_name/><container_class_name/><name>Delta Home - Container 1</name><order>1</order><sp_page display_value="delta_home">39a99c7bdb320010bdf72bfa4b961974</sp_page><subheader>false</subheader><sys_class_name>sp_container</sys_class_name><sys_created_by>brichards99</sys_created_by><sys_created_on>2020-02-12 21:20:25</sys_created_on><sys_id>71a99c7bdb320010bdf72bfa4b961977</sys_id><sys_mod_count>0</sys_mod_count><sys_name>Delta Home - Container 1</sys_name><sys_package display_value="Delta" source="x_8481_delta">89c51077db320010bdf72bfa4b961992</sys_package><sys_policy/><sys_scope display_value="Delta">89c51077db320010bdf72bfa4b961992</sys_scope><sys_update_name>sp_container_71a99c7bdb320010bdf72bfa4b961977</sys_update_name><sys_updated_by>brichards99</sys_updated_by><sys_updated_on>2020-02-12 21:20:25</sys_updated_on><title/><width>container</width></sp_container></record_update>]]></payload><payload_hash>2020205394</payload_hash><remote_update_set display_value="Delta">8def4cdddb67401048f570e2399619c3</remote_update_set><replace_on_upgrade>false</replace_on_upgrade><sys_created_by>admin</sys_created_by><sys_created_on>2020-03-13 09:00:02</sys_created_on><sys_id>85ef8cdddb67401048f570e239961999</sys_id><sys_mod_count>0</sys_mod_count><sys_recorded_at>170cf09374a0000001</sys_recorded_at><sys_updated_by>admin</sys_updated_by><sys_updated_on>2020-03-13 09:00:02</sys_updated_on><table/><target_name>Delta Home - Container 1</target_name><type>Container</type><update_domain>global</update_domain><update_guid>75a99c7b4832001099e3ba37690b7d78</update_guid><update_guid_history>75a99c7b4832001099e3ba37690b7d78:2020205394</update_guid_history><update_set/><view/></sys_update_xml><sys_update_xml action="INSERT_OR_UPDATE"><action>INSERT_OR_UPDATE</action><application display_value="Delta">89c51077db320010bdf72bfa4b961992</application><category>customer</category><comments/><name>m2m_sp_ng_pro_sp_widget_aa3cd07fdb320010bdf72bfa4b961909</name><payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="m2m_sp_ng_pro_sp_widget"><m2m_sp_ng_pro_sp_widget action="INSERT_OR_UPDATE"><sp_angular_provider display_value="DeltaPortalSvc">61fb9c3fdb320010bdf72bfa4b9619ac</sp_angular_provider><sp_widget display_value="Delta Home Widget">191a1cfbdb320010bdf72bfa4b9619aa</sp_widget><sys_class_name>m2m_sp_ng_pro_sp_widget</sys_class_name><sys_created_by>brichards99</sys_created_by><sys_created_on>2020-02-12 21:31:40</sys_created_on><sys_id>aa3cd07fdb320010bdf72bfa4b961909</sys_id><sys_mod_count>0</sys_mod_count><sys_name>DeltaPortalSvc.Delta Home Widget</sys_name><sys_package display_value="Delta" source="x_8481_delta">89c51077db320010bdf72bfa4b961992</sys_package><sys_policy/><sys_scope display_value="Delta">89c51077db320010bdf72bfa4b961992</sys_scope><sys_update_name>m2m_sp_ng_pro_sp_widget_aa3cd07fdb320010bdf72bfa4b961909</sys_update_name><sys_updated_by>brichards99</sys_updated_by><sys_updated_on>2020-02-12 21:31:40</sys_updated_on></m2m_sp_ng_pro_sp_widget></record_update>]]></payload><payload_hash>1095759263</payload_hash><remote_update_set display_value="Delta">8def4cdddb67401048f570e2399619c3</remote_update_set><replace_on_upgrade>false</replace_on_upgrade><sys_created_by>admin</sys_created_by><sys_created_on>2020-03-13 09:00:02</sys_created_on><sys_id>89ef8cdddb67401048f570e239961998</sys_id><sys_mod_count>0</sys_mod_count><sys_recorded_at>170cf09375e0000001</sys_recorded_at><sys_updated_by>admin</sys_updated_by><sys_updated_on>2020-03-13 09:00:02</sys_updated_on><table/><target_name>DeltaPortalSvc.Delta Home Widget</target_name><type>Angular Providers</type><update_domain>global</update_domain><update_guid>ea3cd07f493200104d171608d59d6d0a</update_guid><update_guid_history>ea3cd07f493200104d171608d59d6d0a:1095759263</update_guid_history><update_set/><view/></sys_update_xml><sys_update_xml action="INSERT_OR_UPDATE"><action>INSERT_OR_UPDATE</action><application display_value="Delta">89c51077db320010bdf72bfa4b961992</application><category>customer</category><comments/><name>sys_ws_operation_28f8d87bdb320010bdf72bfa4b96198a</name><payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update table="sys_ws_operation"&gt;&lt;sys_ws_operation action="INSERT_OR_UPDATE"&gt;&lt;active&gt;true&lt;/active&gt;&lt;consumes&gt;application/json,application/xml,text/xml&lt;/consumes&gt;&lt;consumes_customized&gt;false&lt;/consumes_customized&gt;&lt;default_operation_uri/&gt;&lt;enforce_acl&gt;cf9d01d3e73003009d6247e603f6a990&lt;/enforce_acl&gt;&lt;http_method&gt;GET&lt;/http_method&gt;&lt;name&gt;getPortalStats&lt;/name&gt;&lt;operation_script&gt;&lt;![CDATA[(function process(/*RESTAPIRequest*/ request, /*RESTAPIResponse*/ response) {
+	
+	// implement resource here
+	
+	return DeltaSPUtils.getPortalStats();
+	
+})(request, response);]]&gt;&lt;/operation_script&gt;&lt;operation_uri&gt;/api/x_8481_delta/deltaportalapi/getportalstats&lt;/operation_uri&gt;&lt;produces&gt;application/json,application/xml,text/xml&lt;/produces&gt;&lt;produces_customized&gt;false&lt;/produces_customized&gt;&lt;relative_path&gt;/getportalstats&lt;/relative_path&gt;&lt;request_example/&gt;&lt;requires_acl_authorization&gt;true&lt;/requires_acl_authorization&gt;&lt;requires_authentication&gt;true&lt;/requires_authentication&gt;&lt;requires_snc_internal_role&gt;true&lt;/requires_snc_internal_role&gt;&lt;short_description/&gt;&lt;sys_class_name&gt;sys_ws_operation&lt;/sys_class_name&gt;&lt;sys_created_by&gt;brichards99&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2020-02-12 21:18:10&lt;/sys_created_on&gt;&lt;sys_id&gt;28f8d87bdb320010bdf72bfa4b96198a&lt;/sys_id&gt;&lt;sys_mod_count&gt;0&lt;/sys_mod_count&gt;&lt;sys_name&gt;getPortalStats&lt;/sys_name&gt;&lt;sys_package display_value="Delta" source="x_8481_delta"&gt;89c51077db320010bdf72bfa4b961992&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_scope display_value="Delta"&gt;89c51077db320010bdf72bfa4b961992&lt;/sys_scope&gt;&lt;sys_update_name&gt;sys_ws_operation_28f8d87bdb320010bdf72bfa4b96198a&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;brichards99&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2020-02-12 21:18:10&lt;/sys_updated_on&gt;&lt;web_service_definition display_value="DeltaPortalAPI"&gt;3d86503bdb320010bdf72bfa4b9619ff&lt;/web_service_definition&gt;&lt;web_service_version/&gt;&lt;/sys_ws_operation&gt;&lt;/record_update&gt;</payload><payload_hash>1977072648</payload_hash><remote_update_set display_value="Delta">8def4cdddb67401048f570e2399619c3</remote_update_set><replace_on_upgrade>false</replace_on_upgrade><sys_created_by>admin</sys_created_by><sys_created_on>2020-03-13 09:00:03</sys_created_on><sys_id>91ef8cdddb67401048f570e23996199d</sys_id><sys_mod_count>0</sys_mod_count><sys_recorded_at>170cf09373d0000001</sys_recorded_at><sys_updated_by>admin</sys_updated_by><sys_updated_on>2020-03-13 09:00:03</sys_updated_on><table/><target_name>getPortalStats</target_name><type>Scripted REST Resource</type><update_domain>global</update_domain><update_guid>3c299c7bfc3200101e80a6e348d16f6f</update_guid><update_guid_history>3c299c7bfc3200101e80a6e348d16f6f:1977072648</update_guid_history><update_set/><view/></sys_update_xml><sys_update_xml action="INSERT_OR_UPDATE"><action>INSERT_OR_UPDATE</action><application display_value="Delta">89c51077db320010bdf72bfa4b961992</application><category>customer</category><comments/><name>sys_scope_privilege_a59d58bfdb320010bdf72bfa4b9619b6</name><payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_scope_privilege"><sys_scope_privilege action="INSERT_OR_UPDATE"><operation>read</operation><source_scope display_value="Delta">89c51077db320010bdf72bfa4b961992</source_scope><status>allowed</status><sys_class_name>sys_scope_privilege</sys_class_name><sys_created_by>brichards99</sys_created_by><sys_created_on>2020-02-12 21:37:36</sys_created_on><sys_id>a59d58bfdb320010bdf72bfa4b9619b6</sys_id><sys_mod_count>0</sys_mod_count><sys_name>m2m_sp_portal_knowledge_base</sys_name><sys_package display_value="Delta" source="x_8481_delta">89c51077db320010bdf72bfa4b961992</sys_package><sys_policy/><sys_scope display_value="Delta">89c51077db320010bdf72bfa4b961992</sys_scope><sys_update_name>sys_scope_privilege_a59d58bfdb320010bdf72bfa4b9619b6</sys_update_name><sys_updated_by>brichards99</sys_updated_by><sys_updated_on>2020-02-12 21:37:36</sys_updated_on><target_name>m2m_sp_portal_knowledge_base</target_name><target_scope display_value="Global">global</target_scope><target_type>sys_db_object</target_type></sys_scope_privilege></record_update>]]></payload><payload_hash>1756326641</payload_hash><remote_update_set display_value="Delta">8def4cdddb67401048f570e2399619c3</remote_update_set><replace_on_upgrade>false</replace_on_upgrade><sys_created_by>admin</sys_created_by><sys_created_on>2020-03-13 09:00:03</sys_created_on><sys_id>95ef8cdddb67401048f570e23996199c</sys_id><sys_mod_count>0</sys_mod_count><sys_recorded_at>170cf0937a40000001</sys_recorded_at><sys_updated_by>admin</sys_updated_by><sys_updated_on>2020-03-13 09:00:03</sys_updated_on><table/><target_name>m2m_sp_portal_knowledge_base</target_name><type>Cross scope privilege</type><update_domain>global</update_domain><update_guid>619d58bf63320010487295fd1d4293b7</update_guid><update_guid_history>619d58bf63320010487295fd1d4293b7:1756326641</update_guid_history><update_set/><view/></sys_update_xml><sys_update_xml action="INSERT_OR_UPDATE"><action>INSERT_OR_UPDATE</action><application display_value="Delta">89c51077db320010bdf72bfa4b961992</application><category>customer</category><comments/><name>sys_scope_privilege_299dd0bfdb320010bdf72bfa4b9619e7</name><payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_scope_privilege"><sys_scope_privilege action="INSERT_OR_UPDATE"><operation>read</operation><source_scope display_value="Delta">89c51077db320010bdf72bfa4b961992</source_scope><status>allowed</status><sys_class_name>sys_scope_privilege</sys_class_name><sys_created_by>brichards99</sys_created_by><sys_created_on>2020-02-12 21:37:37</sys_created_on><sys_id>299dd0bfdb320010bdf72bfa4b9619e7</sys_id><sys_mod_count>0</sys_mod_count><sys_name>sp_widget</sys_name><sys_package display_value="Delta" source="x_8481_delta">89c51077db320010bdf72bfa4b961992</sys_package><sys_policy/><sys_scope display_value="Delta">89c51077db320010bdf72bfa4b961992</sys_scope><sys_update_name>sys_scope_privilege_299dd0bfdb320010bdf72bfa4b9619e7</sys_update_name><sys_updated_by>brichards99</sys_updated_by><sys_updated_on>2020-02-12 21:37:37</sys_updated_on><target_name>sp_widget</target_name><target_scope display_value="Global">global</target_scope><target_type>sys_db_object</target_type></sys_scope_privilege></record_update>]]></payload><payload_hash>1793605681</payload_hash><remote_update_set display_value="Delta">8def4cdddb67401048f570e2399619c3</remote_update_set><replace_on_upgrade>false</replace_on_upgrade><sys_created_by>admin</sys_created_by><sys_created_on>2020-03-13 09:00:03</sys_created_on><sys_id>99ef8cdddb67401048f570e23996199b</sys_id><sys_mod_count>0</sys_mod_count><sys_recorded_at>170cf0937aa0000001</sys_recorded_at><sys_updated_by>admin</sys_updated_by><sys_updated_on>2020-03-13 09:00:03</sys_updated_on><table/><target_name>sp_widget</target_name><type>Cross scope privilege</type><update_domain>global</update_domain><update_guid>ed9d98bfb1320010898d2f9e37108013</update_guid><update_guid_history>ed9d98bfb1320010898d2f9e37108013:1793605681</update_guid_history><update_set/><view/></sys_update_xml><sys_update_xml action="INSERT_OR_UPDATE"><action>INSERT_OR_UPDATE</action><application display_value="Delta">89c51077db320010bdf72bfa4b961992</application><category>customer</category><comments/><name>sp_widget_c77a58fbdb320010bdf72bfa4b96196d</name><payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update table="sp_widget"&gt;&lt;sp_widget action="INSERT_OR_UPDATE"&gt;&lt;category&gt;custom&lt;/category&gt;&lt;client_script&gt;&lt;![CDATA[function() {  /* widget controller */  var c = this;}]]&gt;&lt;/client_script&gt;&lt;controller_as&gt;c&lt;/controller_as&gt;&lt;css/&gt;&lt;data_table&gt;sp_instance&lt;/data_table&gt;&lt;demo_data/&gt;&lt;description/&gt;&lt;docs/&gt;&lt;field_list/&gt;&lt;has_preview&gt;false&lt;/has_preview&gt;&lt;id&gt;widgets_widget&lt;/id&gt;&lt;internal&gt;false&lt;/internal&gt;&lt;link&gt;&lt;![CDATA[function link(scope, element, attrs, controller) {  }]]&gt;&lt;/link&gt;&lt;name&gt;Widgets Widget&lt;/name&gt;&lt;option_schema/&gt;&lt;public&gt;false&lt;/public&gt;&lt;roles/&gt;&lt;script&gt;&lt;![CDATA[(function() {  /* populate the 'data' object */  /* e.g., data.table = $sp.getValue('table'); */})();]]&gt;&lt;/script&gt;&lt;servicenow&gt;false&lt;/servicenow&gt;&lt;sys_class_name&gt;sp_widget&lt;/sys_class_name&gt;&lt;sys_created_by&gt;brichards99&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2020-02-12 21:24:04&lt;/sys_created_on&gt;&lt;sys_id&gt;c77a58fbdb320010bdf72bfa4b96196d&lt;/sys_id&gt;&lt;sys_mod_count&gt;4&lt;/sys_mod_count&gt;&lt;sys_name&gt;Widgets Widget&lt;/sys_name&gt;&lt;sys_package display_value="Delta" source="x_8481_delta"&gt;89c51077db320010bdf72bfa4b961992&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_scope display_value="Delta"&gt;89c51077db320010bdf72bfa4b961992&lt;/sys_scope&gt;&lt;sys_update_name&gt;sp_widget_c77a58fbdb320010bdf72bfa4b96196d&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;brichards99&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2020-02-13 14:44:57&lt;/sys_updated_on&gt;&lt;template&gt;&lt;![CDATA[&lt;div&gt;
+  &lt;table class="table table-bordered"&gt;
+    &lt;thead&gt;
+      &lt;tr&gt;
+        &lt;th&gt;&lt;/th&gt;
+        &lt;th&gt;Name&lt;/th&gt;
+        &lt;th&gt;ID&lt;/th&gt;
+        &lt;th&gt;Public?&lt;/th&gt;      
+      &lt;/tr&gt;
+    &lt;/thead&gt;
+
+    &lt;tbody ng-repeat="sp_widget in $root.config.widgets"&gt;
+   
+    &lt;tr&gt;
+      &lt;td&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;a href="{{sp_widget.editLink}}" target="_blank"&gt;{{sp_widget.name}}&lt;/a&gt;&lt;/td&gt;
+      &lt;td&gt;{{sp_widget.id}}&lt;/td&gt;
+      &lt;td&gt;{{sp_widget.public}}&lt;/td&gt;
+           
+    &lt;/tr&gt;
+    &lt;/tbody&gt;
+  &lt;/table&gt; 
+&lt;/div&gt;
+
+&lt;!--
+Note that the data objects used here were loaded in the 'home widget' and writtedn to the variable $rootscope.config.
+
+$rootScope is referenced in HTML as $root.
+
+--&gt;]]&gt;&lt;/template&gt;&lt;/sp_widget&gt;&lt;/record_update&gt;</payload><payload_hash>-240123032</payload_hash><remote_update_set display_value="Delta">8def4cdddb67401048f570e2399619c3</remote_update_set><replace_on_upgrade>false</replace_on_upgrade><sys_created_by>admin</sys_created_by><sys_created_on>2020-03-13 09:00:03</sys_created_on><sys_id>9def8cdddb67401048f570e23996199a</sys_id><sys_mod_count>0</sys_mod_count><sys_recorded_at>170cf0937b00000001</sys_recorded_at><sys_updated_by>admin</sys_updated_by><sys_updated_on>2020-03-13 09:00:03</sys_updated_on><table/><target_name>Widgets Widget</target_name><type>Widget</type><update_domain>global</update_domain><update_guid>66b8cc801f0300105f684366839f6e80</update_guid><update_guid_history>66b8cc801f0300105f684366839f6e80:-240123032,849f94ff4d320010dee380c444eada5c:-1966869200,c4ed5cbf483200108dbfeb60838b4a60:63955848,8baa50bbf8320010151d86877fa73779:1466142862,5b7a58fb51320010f109cda95d27006e:634386789</update_guid_history><update_set/><view/></sys_update_xml><sys_update_xml action="INSERT_OR_UPDATE"><action>INSERT_OR_UPDATE</action><application display_value="Delta">89c51077db320010bdf72bfa4b961992</application><category>customer</category><comments/><name>sp_column_a78d18bfdb320010bdf72bfa4b96198a</name><payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_column"><sp_column action="INSERT_OR_UPDATE"><class_name/><order>1</order><size>12</size><size_lg/><size_sm/><size_xs/><sp_row display_value="1">678d18bfdb320010bdf72bfa4b961988</sp_row><sys_class_name>sp_column</sys_class_name><sys_created_by>brichards99</sys_created_by><sys_created_on>2020-02-12 21:37:28</sys_created_on><sys_id>a78d18bfdb320010bdf72bfa4b96198a</sys_id><sys_mod_count>0</sys_mod_count><sys_name>1</sys_name><sys_package display_value="Delta" source="x_8481_delta">89c51077db320010bdf72bfa4b961992</sys_package><sys_policy/><sys_scope display_value="Delta">89c51077db320010bdf72bfa4b961992</sys_scope><sys_update_name>sp_column_a78d18bfdb320010bdf72bfa4b96198a</sys_update_name><sys_updated_by>brichards99</sys_updated_by><sys_updated_on>2020-02-12 21:37:28</sys_updated_on></sp_column></record_update>]]></payload><payload_hash>1087092188</payload_hash><remote_update_set display_value="Delta">8def4cdddb67401048f570e2399619c3</remote_update_set><replace_on_upgrade>false</replace_on_upgrade><sys_created_by>admin</sys_created_by><sys_created_on>2020-03-13 09:00:02</sys_created_on><sys_id>c1ef8cdddb67401048f570e239961999</sys_id><sys_mod_count>0</sys_mod_count><sys_recorded_at>170cf09376e0000001</sys_recorded_at><sys_updated_by>admin</sys_updated_by><sys_updated_on>2020-03-13 09:00:02</sys_updated_on><table/><target_name>1</target_name><type>Column</type><update_domain>global</update_domain><update_guid>2b8d18bfd2320010376013f04adb498b</update_guid><update_guid_history>2b8d18bfd2320010376013f04adb498b:1087092188</update_guid_history><update_set/><view/></sys_update_xml><sys_update_xml action="INSERT_OR_UPDATE"><action>INSERT_OR_UPDATE</action><application display_value="Delta">89c51077db320010bdf72bfa4b961992</application><category>customer</category><comments/><name>sp_widget_a88b5c3fdb320010bdf72bfa4b9619c4</name><payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update table="sp_widget"&gt;&lt;sp_widget action="INSERT_OR_UPDATE"&gt;&lt;category&gt;custom&lt;/category&gt;&lt;client_script&gt;&lt;![CDATA[function($rootScope) {
+  /* widget controller */
+  var c = this;
+
+}]]&gt;&lt;/client_script&gt;&lt;controller_as&gt;c&lt;/controller_as&gt;&lt;css&gt;.row {&amp;#13;
+  margin-left: 0px;&amp;#13;
+  margin-right: 0px;&amp;#13;
+}&lt;/css&gt;&lt;data_table&gt;sp_instance&lt;/data_table&gt;&lt;demo_data/&gt;&lt;description/&gt;&lt;docs/&gt;&lt;field_list/&gt;&lt;has_preview&gt;false&lt;/has_preview&gt;&lt;id&gt;portal_summary_widget&lt;/id&gt;&lt;internal&gt;false&lt;/internal&gt;&lt;link&gt;&lt;![CDATA[function link(scope, element, attrs, controller) {  }]]&gt;&lt;/link&gt;&lt;name&gt;Portal Summary Widget&lt;/name&gt;&lt;option_schema/&gt;&lt;public&gt;false&lt;/public&gt;&lt;roles/&gt;&lt;script&gt;&lt;![CDATA[(function() {  /* populate the 'data' object */  /* e.g., data.table = $sp.getValue('table'); */})();]]&gt;&lt;/script&gt;&lt;servicenow&gt;false&lt;/servicenow&gt;&lt;sys_class_name&gt;sp_widget&lt;/sys_class_name&gt;&lt;sys_created_by&gt;brichards99&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2020-02-12 21:28:32&lt;/sys_created_on&gt;&lt;sys_id&gt;a88b5c3fdb320010bdf72bfa4b9619c4&lt;/sys_id&gt;&lt;sys_mod_count&gt;7&lt;/sys_mod_count&gt;&lt;sys_name&gt;Portal Summary Widget&lt;/sys_name&gt;&lt;sys_package display_value="Delta" source="x_8481_delta"&gt;89c51077db320010bdf72bfa4b961992&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_scope display_value="Delta"&gt;89c51077db320010bdf72bfa4b961992&lt;/sys_scope&gt;&lt;sys_update_name&gt;sp_widget_a88b5c3fdb320010bdf72bfa4b9619c4&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;brichards99&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2020-02-19 15:19:59&lt;/sys_updated_on&gt;&lt;template&gt;&lt;![CDATA[&lt;div class="row"&gt;
+  &lt;div class="col-md-4 jumbotron"&gt;
+    &lt;h3&gt;Portals &lt;/h3&gt;
+    &lt;h1&gt; {{$root.config.summary.portals}}&lt;/h1&gt;
+  &lt;/div&gt;
+  &lt;div class="col-md-4 jumbotron"&gt;
+     &lt;h3&gt;Pages &lt;/h3&gt;   
+    &lt;h1&gt;{{$root.config.summary.pages}}&lt;/h1&gt;
+  &lt;/div&gt;
+  &lt;div class="col-md-4 jumbotron"&gt;
+    &lt;h3&gt;Widgets &lt;/h3&gt;    
+    &lt;h1&gt; {{$root.config.summary.widgets}}&lt;/h1&gt;
+  &lt;/div&gt; 
+  
+&lt;/div&gt;
+
+&lt;!--
+Note that the data objects used here were loaded in the 'home widget' and writtedn to the variable $rootscope.config.
+
+$rootScope is referenced in HTML as $root.
+
+--&gt;]]&gt;&lt;/template&gt;&lt;/sp_widget&gt;&lt;/record_update&gt;</payload><payload_hash>1885147661</payload_hash><remote_update_set display_value="Delta">8def4cdddb67401048f570e2399619c3</remote_update_set><replace_on_upgrade>false</replace_on_upgrade><sys_created_by>admin</sys_created_by><sys_created_on>2020-03-13 09:00:03</sys_created_on><sys_id>c9ef8cdddb67401048f570e23996199a</sys_id><sys_mod_count>0</sys_mod_count><sys_recorded_at>170cf0937e20000001</sys_recorded_at><sys_updated_by>admin</sys_updated_by><sys_updated_on>2020-03-13 09:00:03</sys_updated_on><table/><target_name>Portal Summary Widget</target_name><type>Widget</type><update_domain>global</update_domain><update_guid>124a07f5b6030010800789ae1383f3e9</update_guid><update_guid_history>124a07f5b6030010800789ae1383f3e9:1885147661,eb988c8013030010a802884a08f86c54:1073114117,0c888c8069030010dd376bf9f2e6224f:-250756719,8fb2a0b3b1720010ba3aff1b372b9984:-2101359245,d0a2e4736572001098c31c584a7e5dcb:-1960256438,0082a0b3f2720010fcfea8a5bf2ad292:567396064,7d9b9c3f4132001097bd04121a787a6c:727034948,2c8b5c3fb332001086515310ee4947c5:315090683</update_guid_history><update_set/><view/></sys_update_xml><sys_update_xml action="INSERT_OR_UPDATE"><action>INSERT_OR_UPDATE</action><application display_value="Delta">89c51077db320010bdf72bfa4b961992</application><category>customer</category><comments/><name>sp_portal_eb595cbbdb320010bdf72bfa4b9619d3</name><payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_portal"><sp_portal action="INSERT_OR_UPDATE"><css_variables/><default>false</default><homepage display_value="delta_home">39a99c7bdb320010bdf72bfa4b961974</homepage><icon/><kb_knowledge_base/><kb_knowledge_page/><login_page/><logo/><notfound_page/><quick_start_config/><sc_catalog/><sc_catalog_page/><sc_category_page/><sp_chat_queue/><sp_rectangle_menu/><sqanda_knowledge_base/><sys_class_name>sp_portal</sys_class_name><sys_created_by>brichards99</sys_created_by><sys_created_on>2020-02-12 21:19:24</sys_created_on><sys_id>eb595cbbdb320010bdf72bfa4b9619d3</sys_id><sys_mod_count>1</sys_mod_count><sys_name>Delta</sys_name><sys_package display_value="Delta" source="x_8481_delta">89c51077db320010bdf72bfa4b961992</sys_package><sys_policy/><sys_scope display_value="Delta">89c51077db320010bdf72bfa4b961992</sys_scope><sys_update_name>sp_portal_eb595cbbdb320010bdf72bfa4b9619d3</sys_update_name><sys_updated_by>brichards99</sys_updated_by><sys_updated_on>2020-02-12 21:35:26</sys_updated_on><theme/><title>Delta</title><url_suffix>delta</url_suffix></sp_portal><sys_translated_text action="delete_multiple" query="documentkey=eb595cbbdb320010bdf72bfa4b9619d3"/></record_update>]]></payload><payload_hash>165673107</payload_hash><remote_update_set display_value="Delta">8def4cdddb67401048f570e2399619c3</remote_update_set><replace_on_upgrade>false</replace_on_upgrade><sys_created_by>admin</sys_created_by><sys_created_on>2020-03-13 09:00:02</sys_created_on><sys_id>cdef8cdddb67401048f570e239961999</sys_id><sys_mod_count>0</sys_mod_count><sys_recorded_at>170cf0937660000001</sys_recorded_at><sys_updated_by>admin</sys_updated_by><sys_updated_on>2020-03-13 09:00:02</sys_updated_on><table/><target_name>Delta</target_name><type>Service Portal</type><update_domain>global</update_domain><update_guid>611d90bf0f320010e2e43fc89155f97b</update_guid><update_guid_history>611d90bf0f320010e2e43fc89155f97b:165673107,c7695cbb823200108fd80ab36eb155dc:-807904061</update_guid_history><update_set/><view/></sys_update_xml><sys_update_xml action="INSERT_OR_UPDATE"><action>INSERT_OR_UPDATE</action><application display_value="Delta">89c51077db320010bdf72bfa4b961992</application><category>customer</category><comments/><name>sys_scope_privilege_9d9dd0bfdb320010bdf72bfa4b9619e1</name><payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_scope_privilege"><sys_scope_privilege action="INSERT_OR_UPDATE"><operation>execute</operation><source_scope display_value="Delta">89c51077db320010bdf72bfa4b961992</source_scope><status>allowed</status><sys_class_name>sys_scope_privilege</sys_class_name><sys_created_by>brichards99</sys_created_by><sys_created_on>2020-02-12 21:37:35</sys_created_on><sys_id>9d9dd0bfdb320010bdf72bfa4b9619e1</sys_id><sys_mod_count>0</sys_mod_count><sys_name>Glide API: properties</sys_name><sys_package display_value="Delta" source="x_8481_delta">89c51077db320010bdf72bfa4b961992</sys_package><sys_policy/><sys_scope display_value="Delta">89c51077db320010bdf72bfa4b961992</sys_scope><sys_update_name>sys_scope_privilege_9d9dd0bfdb320010bdf72bfa4b9619e1</sys_update_name><sys_updated_by>brichards99</sys_updated_by><sys_updated_on>2020-02-12 21:37:35</sys_updated_on><target_name>Glide API: properties</target_name><target_scope display_value="Global">global</target_scope><target_type>scriptable</target_type></sys_scope_privilege></record_update>]]></payload><payload_hash>1553118977</payload_hash><remote_update_set display_value="Delta">8def4cdddb67401048f570e2399619c3</remote_update_set><replace_on_upgrade>false</replace_on_upgrade><sys_created_by>admin</sys_created_by><sys_created_on>2020-03-13 09:00:03</sys_created_on><sys_id>d1ef8cdddb67401048f570e23996199c</sys_id><sys_mod_count>0</sys_mod_count><sys_recorded_at>170cf0937840000001</sys_recorded_at><sys_updated_by>admin</sys_updated_by><sys_updated_on>2020-03-13 09:00:03</sys_updated_on><table/><target_name>Glide API: properties</target_name><type>Cross scope privilege</type><update_domain>global</update_domain><update_guid>519dd0bf5d320010f0fc96aafcebd4e3</update_guid><update_guid_history>519dd0bf5d320010f0fc96aafcebd4e3:1553118977</update_guid_history><update_set/><view/></sys_update_xml><sys_update_xml action="INSERT_OR_UPDATE"><action>INSERT_OR_UPDATE</action><application display_value="Delta">89c51077db320010bdf72bfa4b961992</application><category>customer</category><comments/><name>sys_scope_privilege_119dd0bfdb320010bdf72bfa4b9619e4</name><payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_scope_privilege"><sys_scope_privilege action="INSERT_OR_UPDATE"><operation>read</operation><source_scope display_value="Delta">89c51077db320010bdf72bfa4b961992</source_scope><status>allowed</status><sys_class_name>sys_scope_privilege</sys_class_name><sys_created_by>brichards99</sys_created_by><sys_created_on>2020-02-12 21:37:36</sys_created_on><sys_id>119dd0bfdb320010bdf72bfa4b9619e4</sys_id><sys_mod_count>0</sys_mod_count><sys_name>sp_page</sys_name><sys_package display_value="Delta" source="x_8481_delta">89c51077db320010bdf72bfa4b961992</sys_package><sys_policy/><sys_scope display_value="Delta">89c51077db320010bdf72bfa4b961992</sys_scope><sys_update_name>sys_scope_privilege_119dd0bfdb320010bdf72bfa4b9619e4</sys_update_name><sys_updated_by>brichards99</sys_updated_by><sys_updated_on>2020-02-12 21:37:36</sys_updated_on><target_name>sp_page</target_name><target_scope display_value="Global">global</target_scope><target_type>sys_db_object</target_type></sys_scope_privilege></record_update>]]></payload><payload_hash>-1150054127</payload_hash><remote_update_set display_value="Delta">8def4cdddb67401048f570e2399619c3</remote_update_set><replace_on_upgrade>false</replace_on_upgrade><sys_created_by>admin</sys_created_by><sys_created_on>2020-03-13 09:00:03</sys_created_on><sys_id>d5ef8cdddb67401048f570e23996199b</sys_id><sys_mod_count>0</sys_mod_count><sys_recorded_at>170cf09379e0000001</sys_recorded_at><sys_updated_by>admin</sys_updated_by><sys_updated_on>2020-03-13 09:00:03</sys_updated_on><table/><target_name>sp_page</target_name><type>Cross scope privilege</type><update_domain>global</update_domain><update_guid>d99dd0bfd23200107b5b8d214130dbe4</update_guid><update_guid_history>d99dd0bfd23200107b5b8d214130dbe4:-1150054127</update_guid_history><update_set/><view/></sys_update_xml><sys_update_xml action="INSERT_OR_UPDATE"><action>INSERT_OR_UPDATE</action><application display_value="Delta">89c51077db320010bdf72bfa4b961992</application><category>customer</category><comments/><name>sys_ws_operation_adb8587bdb320010bdf72bfa4b961948</name><payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update table="sys_ws_operation"&gt;&lt;sys_ws_operation action="INSERT_OR_UPDATE"&gt;&lt;active&gt;true&lt;/active&gt;&lt;consumes&gt;application/json,application/xml,text/xml&lt;/consumes&gt;&lt;consumes_customized&gt;false&lt;/consumes_customized&gt;&lt;default_operation_uri/&gt;&lt;enforce_acl&gt;cf9d01d3e73003009d6247e603f6a990&lt;/enforce_acl&gt;&lt;http_method&gt;GET&lt;/http_method&gt;&lt;name&gt;getPortals&lt;/name&gt;&lt;operation_script&gt;&lt;![CDATA[(function process(/*RESTAPIRequest*/ request, /*RESTAPIResponse*/ response) {
+
+    // implement resource here
+
+	return DeltaSPUtils.getPortals();
+	
+	
+	
+})(request, response);]]&gt;&lt;/operation_script&gt;&lt;operation_uri&gt;/api/x_8481_delta/deltaportalapi/getportals&lt;/operation_uri&gt;&lt;produces&gt;application/json,application/xml,text/xml&lt;/produces&gt;&lt;produces_customized&gt;false&lt;/produces_customized&gt;&lt;relative_path&gt;/getportals&lt;/relative_path&gt;&lt;request_example/&gt;&lt;requires_acl_authorization&gt;true&lt;/requires_acl_authorization&gt;&lt;requires_authentication&gt;true&lt;/requires_authentication&gt;&lt;requires_snc_internal_role&gt;true&lt;/requires_snc_internal_role&gt;&lt;short_description/&gt;&lt;sys_class_name&gt;sys_ws_operation&lt;/sys_class_name&gt;&lt;sys_created_by&gt;brichards99&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2020-02-12 21:16:53&lt;/sys_created_on&gt;&lt;sys_id&gt;adb8587bdb320010bdf72bfa4b961948&lt;/sys_id&gt;&lt;sys_mod_count&gt;0&lt;/sys_mod_count&gt;&lt;sys_name&gt;getPortals&lt;/sys_name&gt;&lt;sys_package display_value="Delta" source="x_8481_delta"&gt;89c51077db320010bdf72bfa4b961992&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_scope display_value="Delta"&gt;89c51077db320010bdf72bfa4b961992&lt;/sys_scope&gt;&lt;sys_update_name&gt;sys_ws_operation_adb8587bdb320010bdf72bfa4b961948&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;brichards99&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2020-02-12 21:16:53&lt;/sys_updated_on&gt;&lt;web_service_definition display_value="DeltaPortalAPI"&gt;3d86503bdb320010bdf72bfa4b9619ff&lt;/web_service_definition&gt;&lt;web_service_version/&gt;&lt;/sys_ws_operation&gt;&lt;/record_update&gt;</payload><payload_hash>-1741153997</payload_hash><remote_update_set display_value="Delta">8def4cdddb67401048f570e2399619c3</remote_update_set><replace_on_upgrade>false</replace_on_upgrade><sys_created_by>admin</sys_created_by><sys_created_on>2020-03-13 09:00:03</sys_created_on><sys_id>d9ef8cdddb67401048f570e23996199d</sys_id><sys_mod_count>0</sys_mod_count><sys_recorded_at>170cf09372d0000001</sys_recorded_at><sys_updated_by>admin</sys_updated_by><sys_updated_on>2020-03-13 09:00:03</sys_updated_on><table/><target_name>getPortals</target_name><type>Scripted REST Resource</type><update_domain>global</update_domain><update_guid>8ad8947bae320010f9bbe9eb960cc7a6</update_guid><update_guid_history>8ad8947bae320010f9bbe9eb960cc7a6:-1741153997</update_guid_history><update_set/><view/></sys_update_xml><sys_update_xml action="INSERT_OR_UPDATE"><action>INSERT_OR_UPDATE</action><application display_value="Delta">89c51077db320010bdf72bfa4b961992</application><category>customer</category><comments/><name>sys_ws_definition_3d86503bdb320010bdf72bfa4b9619ff</name><payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ws_definition"><sys_ws_definition action="INSERT_OR_UPDATE"><active>true</active><base_uri>/api/x_8481_delta/deltaportalapi</base_uri><consumes>application/json,application/xml,text/xml</consumes><consumes_customized>false</consumes_customized><default_version>No active default version</default_version><doc_link/><enforce_acl>cf9d01d3e73003009d6247e603f6a990</enforce_acl><is_versioned>false</is_versioned><name>DeltaPortalAPI</name><namespace>x_8481_delta</namespace><produces>application/json,application/xml,text/xml</produces><produces_customized>false</produces_customized><service_id>deltaportalapi</service_id><short_description/><sys_class_name>sys_ws_definition</sys_class_name><sys_created_by>brichards99</sys_created_by><sys_created_on>2020-02-12 21:07:01</sys_created_on><sys_id>3d86503bdb320010bdf72bfa4b9619ff</sys_id><sys_mod_count>0</sys_mod_count><sys_name>DeltaPortalAPI</sys_name><sys_package display_value="Delta" source="x_8481_delta">89c51077db320010bdf72bfa4b961992</sys_package><sys_policy/><sys_scope display_value="Delta">89c51077db320010bdf72bfa4b961992</sys_scope><sys_update_name>sys_ws_definition_3d86503bdb320010bdf72bfa4b9619ff</sys_update_name><sys_updated_by>brichards99</sys_updated_by><sys_updated_on>2020-02-12 21:07:01</sys_updated_on></sys_ws_definition></record_update>]]></payload><payload_hash>353097806</payload_hash><remote_update_set display_value="Delta">8def4cdddb67401048f570e2399619c3</remote_update_set><replace_on_upgrade>false</replace_on_upgrade><sys_created_by>admin</sys_created_by><sys_created_on>2020-03-13 09:00:03</sys_created_on><sys_id>ddef8cdddb67401048f570e23996199c</sys_id><sys_mod_count>0</sys_mod_count><sys_recorded_at>170cf0937240000001</sys_recorded_at><sys_updated_by>admin</sys_updated_by><sys_updated_on>2020-03-13 09:00:03</sys_updated_on><table/><target_name>DeltaPortalAPI</target_name><type>Scripted REST API</type><update_domain>global</update_domain><update_guid>a996103b3e32001095bbdd1f8e0ab092</update_guid><update_guid_history>a996103b3e32001095bbdd1f8e0ab092:353097806</update_guid_history><update_set/><view/></sys_update_xml></unload>
