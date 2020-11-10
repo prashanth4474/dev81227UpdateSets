@@ -1,0 +1,911 @@
+<?xml version="1.0" encoding="UTF-8"?><unload unload_date="2020-11-10 10:00:00"><sys_remote_update_set action="INSERT_OR_UPDATE"><application display_value="Global">global</application><application_name>Global</application_name><application_scope>global</application_scope><application_version/><collisions/><commit_date/><deleted/><description>A search utility that leverages the 'sn_codesearch' application used by App Studio for performing string searches across multiple tables.  This is based on the out-of-the-box sample page 'CodeSearchExampleUse', but rather than only searching custom applications, this page performs a system-wide search across all scopes, including GLOBAL.  The search page uses the default search group and no configuration is needed.  This version also includes an option to gather additional details from each result in the search results.
+______________________
+Rick Marsha - 20 Sep 2020
+Questions or issues: rick.marsha.sn@gmail.com</description><inserted/><name>RGM Global Code Search - v2</name><origin_sys_id/><parent/><release_date/><remote_base_update_set/><remote_parent_id/><remote_sys_id>0fc7adf6dbd0201082850181ca961995</remote_sys_id><state>loaded</state><summary/><sys_class_name>sys_remote_update_set</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2020-11-10 10:00:00</sys_created_on><sys_id>365eae0bdb94601082850181ca961911</sys_id><sys_mod_count>0</sys_mod_count><sys_updated_by>admin</sys_updated_by><sys_updated_on>2020-11-10 10:00:00</sys_updated_on><update_set/><update_source/><updated/></sys_remote_update_set><sys_update_xml action="INSERT_OR_UPDATE"><action>INSERT_OR_UPDATE</action><application display_value="Global">global</application><category>customer</category><comments/><name>sys_script_include_874a3afa2fbed010b30c49e72799b634</name><payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update table="sys_script_include"&gt;&lt;sys_script_include action="INSERT_OR_UPDATE"&gt;&lt;access&gt;public&lt;/access&gt;&lt;active&gt;true&lt;/active&gt;&lt;api_name&gt;global.RGMGlobalCodeSearch&lt;/api_name&gt;&lt;caller_access/&gt;&lt;client_callable&gt;false&lt;/client_callable&gt;&lt;description/&gt;&lt;name&gt;RGMGlobalCodeSearch&lt;/name&gt;&lt;script&gt;&lt;![CDATA[var RGMGlobalCodeSearch = Class.create();
+RGMGlobalCodeSearch.prototype = {
+	initialize: function () {
+	},
+	
+	getRecordDetails : function(recordTable, recordSysID) {
+		if (!recordTable || !recordSysID) return;
+		
+		var recordGr = new GlideRecord(recordTable);
+		var objDetails = {};
+		
+		if (recordGr.get(recordSysID)) {
+			// get the core fields
+			objDetails['sys_created_on'] = recordGr.getValue('sys_created_on');
+			objDetails['sys_created_by'] = recordGr.getValue('sys_created_by');
+			objDetails['sys_updated_on'] = recordGr.getValue('sys_updated_on');
+			objDetails['sys_updated_by'] = recordGr.getValue('sys_updated_by');
+			objDetails['sys_mod_count']  = recordGr.getValue('sys_mod_count');
+
+			if (recordGr.isValidField('sys_scope')) {
+				objDetails['sys_scope'] = recordGr.sys_domain.getDisplayValue().toUpperCase() || 'GLOBAL';
+			} else {
+				objDetails['sys_domain'] = 'none';
+			}
+			
+			if (recordGr.isValidField('sys_domain')) {
+				objDetails['sys_domain'] = recordGr.sys_domain.getDisplayValue().toUpperCase() || 'GLOBAL';
+			} else {
+				objDetails['sys_domain'] = 'none';
+			}
+			
+			if (recordGr.isValidField('active')) {
+				objDetails['active'] = (recordGr.getValue('active') == '1').toString();
+			} else {
+				objDetails['active'] = 'none';
+			}
+			
+		}
+
+		return JSON.stringify(objDetails);
+		
+	},
+
+	type: 'RGMGlobalCodeSearch'
+};]]&gt;&lt;/script&gt;&lt;sys_class_name&gt;sys_script_include&lt;/sys_class_name&gt;&lt;sys_created_by&gt;admin&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2020-08-27 02:39:30&lt;/sys_created_on&gt;&lt;sys_id&gt;874a3afa2fbed010b30c49e72799b634&lt;/sys_id&gt;&lt;sys_mod_count&gt;31&lt;/sys_mod_count&gt;&lt;sys_name&gt;RGMGlobalCodeSearch&lt;/sys_name&gt;&lt;sys_package display_value="Global" source="global"&gt;global&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_scope display_value="Global"&gt;global&lt;/sys_scope&gt;&lt;sys_update_name&gt;sys_script_include_874a3afa2fbed010b30c49e72799b634&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;admin&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2020-09-19 22:45:37&lt;/sys_updated_on&gt;&lt;/sys_script_include&gt;&lt;/record_update&gt;</payload><payload_hash>-1791399560</payload_hash><remote_update_set display_value="RGM Global Code Search - v2">365eae0bdb94601082850181ca961911</remote_update_set><replace_on_upgrade>false</replace_on_upgrade><sys_created_by>admin</sys_created_by><sys_created_on>2020-11-10 10:00:00</sys_created_on><sys_id>325eae0bdb94601082850181ca961912</sys_id><sys_mod_count>0</sys_mod_count><sys_recorded_at>175ac7ed54c0000001</sys_recorded_at><sys_updated_by>admin</sys_updated_by><sys_updated_on>2020-11-10 10:00:00</sys_updated_on><table/><target_name>RGMGlobalCodeSearch</target_name><type>Script Include</type><update_domain>global</update_domain><update_guid>beeae52617939410f72ffb0fd21a1ce1</update_guid><update_guid_history>beeae52617939410f72ffb0fd21a1ce1:-1791399560,b14a2926ab9394109d1cc907e38c442a:897658701,3d2f35de264f941081e819d4658003ad:674937165,955afddaa24f94109f09bed23a349152:1559478582,ef0af9dab44f941031ed1ac901e3f6b8:-1869780765,fb99f9da044f94105255ff00e5192fa6:-1502873055,9ef8f1da554f94101ef3cc49a527c144:1888370702,f7a831da3c4f9410b23186a07bbaf8e9:1348152022,6198fd9a564f9410b8600d1707a0d5cc:-164622066,a7587d9a9d4f94103b03d95518108c77:-581364669,2737319a534f94100e83d132facf7bf1:-285455457,d5147dd6af4f94103729298c3ef33653:-402965294,84c375d60f4f9410f581c0069ee0c90c:-1305521597,fd83b5d6474f94109cf26bf17cf6d5aa:537006182,6733f1d6634f941051c84e068de00283:-186915416,ac75c10a05039410d389f17ae1b11a99:1486690346,c8d44d86c70394105a4fb26216621a29:-1487945405,23f345c69d039410191bda675df7c998:-1558443213,83b341c6570394106d8e25b70ee7d640:-1036663703,df9301c64f039410cf9113d1ad2365b4:593622637,6f738d86370394103a5201f48e5f6dbf:-9225671,8d434d468e0394103e4db5c907bf337a:1112948755,30f14946b00394107c712cc4c2befeaf:1156926793,e2d10d46ac039410b754f42df9222b6f:197057117,9b9149462d0394107f64aeb603654e9b:-217176426,db808506030394104c2a5fecd2a56e01:-686674855,ec3e70c29d039410d444c073de4d2049:-1992532981,777dbc420c0394102c00a2613fd6836b:1480478112,100dfa3e70bed010148eefffc29f729d:-2024236825,5d3cfa3e18bed010e05929434d057596:-890966783,50ca723e06bed010d8b78b66223c2fe2:-491729345,c74a3afa99bed0100e30bb7781972637:774810281</update_guid_history><update_set/><view/></sys_update_xml><sys_update_xml action="INSERT_OR_UPDATE"><action>INSERT_OR_UPDATE</action><application display_value="Global">global</application><category>customer</category><comments/><name>sys_ui_page_0d0b0cf44f5853402e3df6e01310c7a0</name><payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update table="sys_ui_page"&gt;&lt;sys_ui_page action="INSERT_OR_UPDATE"&gt;&lt;category&gt;general&lt;/category&gt;&lt;client_script&gt;&lt;![CDATA[// *** F U N C T I O N  s n _ c o d e s e a r c h _ g e t R e s u l t s ( ) *********************
+// 
+// Summary: The main worker triggered from the form submit
+//          calls the CodeSearch REST API based on the form data
+//          processes the results &amp; builds the HTML
+//
+function sn_codesearch_getResults() {
+    if (!g_user.hasRole('admin')) {
+        return;
+    }
+
+    // trigger UI updates for search
+    $j("#cs-search-results").hide();
+    $j("#csearch-results-top-container").show();
+    $j("#cs-icon-searching-container").show();
+    $j("#cs-accordion").html("");
+
+    var userToken = "$[gs.getSessionToken()]";
+    var searchTerm = ($j("#sn_codesearch_term").val()).trim();
+    var endpoint = '/api/sn_codesearch/code_search/search',
+        limit = "100",
+        req = {
+            data: {
+                limit: limit,
+                current_app: "",
+                table: $j("#sn_codesearch_table").val(),
+                term: searchTerm,
+                search_all_scopes: "true",
+                search_group: "sn_codesearch.Default Search Group"
+            },
+
+            dataType: 'json',
+            headers: {
+                "X-UserToken": userToken
+            }
+        };
+
+    if (!req.data.term) {
+        $j("#csearch-results-top-container").hide();
+        $j("#cs-icon-searching-container").hide();
+        //alert("Please enter a search term");
+        return false;
+    }
+
+    var jqxhr = $j.ajax(endpoint, req)
+
+        .done(function(data, textStatus, jqXHR) {
+            // build the result contianer
+            var result = data.result;
+            var resultCount = 0;
+            var resultDesc = '';
+            var queryMax = 100;
+
+            data.result = sortResults(data.result, 'tableLabel', true);
+
+            // uncomment the lines below to send the entire payload to the browser console
+            /*
+            try {
+            	var fullLoad = console.log(JSON.stringify(result));
+            } catch (err) {
+            }
+            */
+
+            // loop for multiple search tables
+            if (req.data.table) {
+                $j(writeOutputForTable(result)).appendTo($j("#cs-accordion"));
+                resultCount = 1;
+            } else {
+                for (var i = 0; i &lt; result.length; i++) {
+                    $j(writeOutputForTable(result[i])).appendTo($j("#cs-accordion"));
+                    resultCount += result[i].hits.length;
+                }
+
+            }
+
+            // process result count for the final results summary at the top
+            if (resultCount == queryMax) {
+                resultDesc = '' + queryMax + ' records returned (maximum). Try making the search more specific.';
+
+            } else if (resultCount &gt; 0 &amp;&amp; resultCount &lt; queryMax) {
+                resultDesc = '' + resultCount + ' records returned';
+
+            } else {
+                resultDesc = 'No records returned';
+
+            }
+
+            // UI updates for results
+            $j("#final-result-count").text(resultDesc);
+            $j("#cs-search-results").fadeIn(170);
+            $j("#cs-icon-searching-container").hide();
+
+        })
+
+
+        .fail(function(jqXHR, textStatus, errorThrown) {
+            //console.log("Error - unable to complete search. Message is " + errorThrown);
+        });
+
+    return false;
+}
+
+
+// *** F U N C T I O N  s n _ c o d e s e a r c h _ c l e a r S e l e c t i o n s ( ) *********************
+//
+// Clears the search form HTML fields
+//
+function sn_codesearch_clearSelections() {
+    $j("#sn_codesearch_table").val('');
+    $j("#sn_codesearch_term").val('');
+
+    return false;
+}
+
+
+// *** F U N C T I O N  g e t H i t D e t a i l s ( ) *********************
+//
+// 
+//
+function getHitDetails(hit) {
+    var csGa = new GlideAjax('RGMGlobalCodeSearchAjax');
+    csGa.addParam('sysparm_name', 'getRecordDetails');
+    csGa.addParam('sysparm_table', hit.className);
+    csGa.addParam('sysparm_sys_id', hit.sysId);
+    csGa.getXMLWait();
+    var returnVal = csGa.getAnswer();
+
+    hit.hit_details = JSON.parse(returnVal);
+    return hit;
+
+}
+
+
+// *** F U N C T I O N  w r i t e O u t p u t F o r T a b l e ( ) *********************
+//
+// Summary: Called from the main worker for each search table result (top-level accordion)
+//
+function writeOutputForTable(data) {
+    if (!data) {
+        return;
+    }
+
+    if (data.hits.length &lt; 1) {
+        return;
+    }
+
+    // *** L E V E L  1 - MAIN RESULTS (TABLE) ***********************
+    // This is the top-layer accordion results
+    //
+    var header = '&lt;div class="panel"&gt;&lt;div class="panel-top"&gt;';
+    header += '&lt;a data-toggle="collapse" data-parent="#cs-accordion" data-target="#' + data.recordType + '" rel="nofollow" onClick=""&gt;';
+    header += '  &lt;div class="panel-heading"&gt;&lt;span class="panel-title"&gt;' + data.tableLabel + '&lt;span class="hit-count-badge"&gt;' + (data.hits.length || 0) + '&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;';
+    header += '&lt;/a&gt;';
+
+    var objHeader = $j(header);
+    var result_body = '&lt;div id="' + data.recordType + '" class="panel-collapse collapse" style=""&gt;&lt;div class="panel-body"&gt;';
+
+
+    // *** L E V E L  2 - SPECIFIC RECORDS FOR EACH LEVEL 1 TABLE (HIT) ***********************
+    // These are the sub-accordions found under each Level 1 accordion
+    //
+    $j.each(data.hits, function(idx, hit) {
+        var header2 = '';
+        var shouldHide = '';
+
+        if (data.hits.length == 1) {
+            shouldHide = ' in';
+
+        }
+
+		var hitDetailsIsActive = 'none';
+		
+		if ($j("#csearch_include_details").is(":checked")) {
+			// passing hit object to get the hit details injected
+			hit = getHitDetails(hit);
+			hitDetailsIsActive = hit.hit_details.active.toString();
+			
+		}
+	
+        // for debugging the payload:
+        //header2 += '&lt;div&gt;' + JSON.stringify(hit) + '&lt;/div&gt;';
+        //
+        // console.log(hit);
+        header2 += '&lt;div class="accordion" id="cs-accordion-' + data.recordType + '-' + idx + '"&gt;';
+        header2 += '&lt;div class="panel"&gt;';
+        header2 += '&lt;div class="panel-sub" onClick=""&gt;';
+		
+		// ********************
+		header2 += '&lt;div class="panel-heading-sub"&gt;'; 
+		header2 += '    &lt;table border="0" class="panel-heading-sub-table"&gt;';
+		header2 += '        &lt;tbody&gt;';
+		header2 += '            &lt;tr&gt;';
+		header2 += '                &lt;td class="panel-heading-sub-container-left"&gt;';
+		header2 += '                    &lt;a data-toggle="collapse" class="panel-hit-header-link-left" data-parent="#cs-accordion-' + data.recordType + '-' + idx + '" data-target="#panel-hit-' + data.recordType + '-' + idx + '" rel="nofollow"&gt;';
+		header2 += '                        &lt;div&gt;';
+		header2 += '                           &lt;div class="panel-title"&gt;' + hit.name + '&lt;span class="hit-count-badge"&gt;' + (hit.matches.length || 0) + '&lt;/span&gt;&lt;/div&gt;';
+		header2 += '                        &lt;/div&gt;';
+		header2 += '                    &lt;/a&gt;';
+		header2 += '                &lt;/td&gt;';
+		header2 += '                &lt;td class="panel-heading-sub-icon-container"&gt;';
+		header2 += '                    &lt;div&gt;';
+											if (hitDetailsIsActive == 'true') {
+		header2 += '                        	&lt;i class="icon-success-circle panel-heading-icon-up" /&gt;&lt;/div&gt;';
+											} else if (hitDetailsIsActive == 'false') {
+		header2 += '                    		&lt;i class="icon-not-started-circle panel-heading-icon-down" /&gt;&lt;/div&gt;';
+											} else if (hitDetailsIsActive != 'none') {
+		header2 += '							&lt;i class="icon-empty-circle panel-heading-icon-disabled" /&gt;&lt;/div&gt;';
+											}
+		header2 += ' 				&lt;/td&gt;';
+		header2 += '				&lt;td class="panel-heading-sub-container-right"&gt;';
+		header2 += '    				&lt;div style="text-align: right;"&gt;';
+		header2 += '        				&lt;a class="panel-hit-link-left" href="/sys_update_version_list.do?sysparm_query=name%3D' + data.recordType + '_' + hit.sysId + '" target="_blank"&gt;';
+		header2 += '            				&lt;h5 class="panel-title-left"&gt;Versions ➚&lt;/h5&gt;';
+		header2 += '        				&lt;/a&gt;';
+		header2 += '        				&lt;a class="panel-hit-link-right" href="/' + data.recordType + '.do?sys_id=' + hit.sysId + '" target="_blank"&gt;';
+		header2 += '           					&lt;h5 class="panel-title-right"&gt;Open ➚&lt;/h5&gt;';
+		header2 += '        				&lt;/a&gt;';
+		header2 += '    				&lt;/div&gt;';
+		header2 += '				&lt;/td&gt;';
+		header2 += '			&lt;/tr&gt;';
+		header2 += '		&lt;/tbody&gt;';
+		header2 += '	&lt;/table&gt;';
+		header2 += '&lt;/div&gt;';
+		// ********************
+		
+        var result_desc = header2 + '&lt;div class="panel-collapse collapse' + shouldHide + '" id="panel-hit-' + data.recordType + '-' + idx + '"&gt;&lt;div class="panel-body-sub"&gt;&lt;div class="panel-hit"&gt;';
+
+		var text = '&lt;table style="width: 100%;background-color: transparent;"&gt;&lt;tr colspan="2"&gt;&lt;td style="padding: 0px 5px 0px 0px; width: 50%"&gt;';
+		
+		if ($j("#csearch_include_details").is(":checked")) {
+			// HIT DETAILS PANEL
+			var fieldsArr = ['sys_created_on', 'sys_created_by', 'sys_updated_on', 'sys_updated_by'];
+			text +=    '  &lt;table class="hit-details-container"&gt;';
+
+			for (var i = 0; i &lt; fieldsArr.length; i++) {
+				text += '&lt;tr class="hit-details-text-line" colspan="2"&gt;';
+				text += '  &lt;td class="hit-details-text-left"&gt;&lt;span&gt;' + fieldsArr[i] + ':&lt;/span&gt;&lt;/td&gt;';
+				text += '  &lt;td class="hit-details-text-right"&gt;&lt;span&gt;' + hit.hit_details[fieldsArr[i]] + '&lt;/span&gt;&lt;/td&gt;';
+				text += '&lt;/tr&gt;'; 
+			}
+
+			text += '&lt;tr colspan="2"&gt;&lt;td class="hit-details-footer" /&gt;&lt;td class="hit-details-footer" /&gt;&lt;/tr&gt;';
+			text += '&lt;/table&gt;&lt;/td&gt;';
+			text += '&lt;td style="padding: 0px 0px 0px 5px; width: 50%"&gt;';
+
+			// HIT DETAILS PANEL 2
+			fieldsArr = ['active', 'sys_mod_count', 'sys_scope', 'sys_domain'];
+			text += '&lt;table class="hit-details-container"&gt;';
+
+			for (var a = 0; a &lt; fieldsArr.length; a++) {
+				text += '&lt;tr class="hit-details-text-line" colspan="2"&gt;';
+				text += '  &lt;td class="hit-details-text-left"&gt;&lt;span&gt;' + fieldsArr[a] + ':&lt;/span&gt;&lt;/td&gt;';
+				text += '  &lt;td class="hit-details-text-right"&gt;&lt;span&gt;' + hit.hit_details[fieldsArr[a]] + '&lt;/span&gt;&lt;/td&gt;';
+				text += '&lt;/tr&gt;'; 
+			}
+
+			text += '&lt;tr colspan="2"&gt;&lt;td class="hit-details-footer" /&gt;&lt;td class="hit-details-footer" /&gt;&lt;/tr&gt;';
+			text += '&lt;/table&gt;';
+		}
+		
+		text += '&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;';
+		
+        // *** L E V E L 3 - INSTANCE OF SPECIFIC MATCH IN THE RECORD (MATCH) ***********************
+        // This is the child panel containing the code matches
+        //
+        $j.each(hit.matches, function(indx, match) {
+            // for debugging the payload:
+            //text += '&lt;div&gt;' + JSON.stringify(match) + '&lt;/div&gt;';
+            //
+            var labelSpacer = indx &gt; 0 ? 'style="margin-top: 5px"' : '';
+
+            text += '&lt;div class="panel-hit-field-label" ' + labelSpacer + '&gt;' + match.fieldLabel + '&lt;/div&gt;';
+            text += '&lt;pre&gt;&lt;table class="hit-lines-table"&gt;';
+
+            var lastLine = 0;
+
+            // *** L E V E L 4 - SINGLE LINE OF CODE FROM EACH MATCH.  ***********************
+            // ADDS ONE LINE BEFORE THE MATCH AND ONE AFTER.
+            //
+            $j.each(match.lineMatches, function(ix, fieldLine) {
+                // for debugging the payload:
+                //text += '&lt;div&gt;' + JSON.stringify(fieldLine) + '&lt;/div&gt;';
+                //
+                var borderClass = '';
+
+                // set the flag for highlighted separator if the next line is out of sequence
+                if (lastLine &gt; 0 &amp;&amp; fieldLine.line &gt; (lastLine + 1)) {
+                    borderClass = 'hit-red';
+                }
+
+                try {
+                    // highlight the match for this code line by injecting open/close &lt;span&gt; tags
+                    // so the CSS will pick up the highlighting
+                    //
+                    // STEP 1 - escape term to html so it matches the encoded response
+                    // STEP 2 - escape the output of STEP 1 to make it regex-friendly
+                    //
+                    var escSrchTrm = $j("#sn_codesearch_term").val().replace(/[&amp;&lt;&gt;"'\/]/g,
+                        function(s) {
+                            var entityMap = {
+                                "&amp;": "&amp;amp;",
+                                "&lt;": "&amp;lt;",
+                                "&gt;": "&amp;gt;",
+                                '"': '&amp;quot;',
+                                "'": '&amp;#x27;',
+                                "/": '&amp;#x2F;'
+                            };
+
+                            return entityMap[s];
+
+                        }).replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&amp;");
+
+                    var hitRegEx = new RegExp(escSrchTrm, 'gi');
+                    var hitlineTxt = fieldLine.escaped.replace(hitRegEx,
+                        function(val) {
+                            //console.log(val);
+                            if (val) {
+                                return '&lt;span class="hit-search-match"&gt;' + val + '&lt;/span&gt;';
+                            }
+                        });
+
+                    /*
+                    // debugging
+                    if (ix &lt; 10) {
+                    	console.log('hitlineTxt=' + hitlineTxt);
+                    }
+                    */
+
+                    text += '&lt;tr class="hit-row"&gt;&lt;td class="hit-left ' + borderClass + ' noselect"&gt;&lt;span&gt;' + fieldLine.line + '&lt;/span&gt;&lt;/td&gt;&lt;td class="hit-right ' + borderClass + ' "&gt;&lt;span&gt;' + hitlineTxt + '&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;';
+
+                } catch (err) {
+
+
+                }
+
+                lastLine = fieldLine.line;
+
+            });
+
+            text += '&lt;/table&gt;&lt;/pre&gt;';
+
+        });
+
+        text += '';
+        // button up the HTML
+        result_body += '' + result_desc + text + '&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;';
+
+    });
+
+    result_body += "&lt;/div&gt;";
+    // send final body to the results DIV
+    $j(result_body).appendTo(objHeader);
+    return objHeader;
+
+}
+
+
+// *** F U N C T I O N  s o r t R e s u l t s ( ) *********************
+//
+// Summary: Sorts and stuff
+//
+function sortResults(obj, prop, asc) {
+    obj.sort(function(a, b) {
+        if (asc) {
+            return (a[prop] &gt; b[prop]) ? 1 : ((a[prop] &lt; b[prop]) ? -1 : 0);
+        } else {
+            return (b[prop] &gt; a[prop]) ? 1 : ((b[prop] &lt; a[prop]) ? -1 : 0);
+        }
+    });
+
+
+    return obj;
+
+}]]&gt;&lt;/client_script&gt;&lt;description&gt;Calls rgm_code_search_macro to build the search form content.&amp;#13;
+Once the form is submitted, calls function sn_codesearch_getResults() found in the client script&amp;#13;
+_____________________________&amp;#13;
+Updated by Rick Marsha: 22aug2020&amp;#13;
+For questions or issues: rick.marsha.sn@gmail.com&lt;/description&gt;&lt;direct&gt;false&lt;/direct&gt;&lt;endpoint/&gt;&lt;html&gt;&lt;![CDATA[&lt;?xml version="1.0" encoding="utf-8" ?&gt;
+&lt;j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null"&gt;
+	&lt;g:requires name="styles/heisenberg/heisenberg_all.css" includes="true" /&gt;
+	&lt;g:requires name="scripts/heisenberg/heisenberg_all.js" /&gt;
+	&lt;g:requires name="lib/jquery_includes.js" /&gt;
+	&lt;!--g:requires name="scripts/angular_includes_1.4.js" includes="true" /--&gt;
+	&lt;!--g:requires name="styles/css_includes_doctype.css" includes="true" /--&gt;
+	
+	&lt;!-- validate admin permissions and show error if not admin, else load macro --&gt;
+	&lt;j:choose&gt;
+		&lt;j:when test="${gs.hasRole('admin')}"&gt;
+			&lt;g:inline template="rgm_code_search_macro" /&gt;
+		&lt;/j:when&gt;
+		&lt;j:otherwise&gt;
+			&lt;div class="outputmsg outputmsg_error notification notification-error"&gt;
+				&lt;div class="outputmsg_text"&gt;Insufficient permissions to access this feature.&lt;/div&gt;
+			&lt;/div&gt;
+		&lt;/j:otherwise&gt;
+	&lt;/j:choose&gt;
+&lt;/j:jelly&gt;]]&gt;&lt;/html&gt;&lt;name&gt;rgm_code_search&lt;/name&gt;&lt;processing_script/&gt;&lt;sys_class_name&gt;sys_ui_page&lt;/sys_class_name&gt;&lt;sys_created_by&gt;rick.marsha&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2018-02-12 17:25:50&lt;/sys_created_on&gt;&lt;sys_id&gt;0d0b0cf44f5853402e3df6e01310c7a0&lt;/sys_id&gt;&lt;sys_mod_count&gt;853&lt;/sys_mod_count&gt;&lt;sys_name&gt;rgm_code_search&lt;/sys_name&gt;&lt;sys_package display_value="Global" source="global"&gt;global&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_scope display_value="Global"&gt;global&lt;/sys_scope&gt;&lt;sys_update_name&gt;sys_ui_page_0d0b0cf44f5853402e3df6e01310c7a0&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;admin&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2020-09-20 13:18:39&lt;/sys_updated_on&gt;&lt;/sys_ui_page&gt;&lt;/record_update&gt;</payload><payload_hash>-184394733</payload_hash><remote_update_set display_value="RGM Global Code Search - v2">365eae0bdb94601082850181ca961911</remote_update_set><replace_on_upgrade>false</replace_on_upgrade><sys_created_by>admin</sys_created_by><sys_created_on>2020-11-10 10:00:00</sys_created_on><sys_id>325eae0bdb94601082850181ca961913</sys_id><sys_mod_count>0</sys_mod_count><sys_recorded_at>175ac7ed5520000001</sys_recorded_at><sys_updated_by>admin</sys_updated_by><sys_updated_on>2020-11-10 10:00:00</sys_updated_on><table/><target_name>rgm_code_search</target_name><type>UI Page</type><update_domain>global</update_domain><update_guid>13b238f6465b1010dd87da3992e66332</update_guid><update_guid_history>13b238f6465b1010dd87da3992e66332:-184394733,7ef4a0a22fdf5410d922ac25c5d3d757:851057299,f3b4e062afdf5410cad39e61bfcfdacc:-1680913089,e9542462ecdf54106f03c6df66e05e42:-1750282049,c48fcada618f94108cf044a1702b7e24:301514730,0e4fcadac38f941098d9ff9800d4bc1d:-282331832,c98e8e5a348f941038195904b0b0df04:301514730,0ffd4e9a7b8f9410e8977e51256d5780:-1505538209,9beb0e1a928f9410ed3ef0c4a9c963d8:301514730,2a7bce1a508f9410fca441fe52ee6b02:-588864513,d86bce1a828f9410cca951e30b490818:-1327096734,b53b4e1a638f941077af4c6a3e58a164:102446970,a82bc61a9a8f9410495acf081c612474:1406660833,830bc61a188f9410dd8b0b3ce17474f4:-1324746634,e8ea861ad98f941024e12520484380a9:1021413421,82bac61af38f9410458a17c98129916d:-1239060922,cb9a061a1f8f9410523d5daccdb53ef7:2055605538,407a8e96b48f94104cbfa8f65b3b0bda:-1968697610,40b88e567f8f9410bac98517fa63f78c:301514730,6f788e962c8f941031459667243f8b7c:1532261117,83484296798f9410292989aa06ead326:-1968697610,c7970696428f94104fcc8145d336ec18:1160606873,15574296958f9410634d7c06aec43520:2055605538,f7b68a569d8f9410e23fda6cbe4dc160:-289959840,2b9fb112068f941052443f38e74ac2e0:-1239060922,2badb19e304f9410c471081db51bb4d9:268518095,b90c755e284f9410b966f46a1e165511:-239593477,e36b7d1ee74f94108e14ff92f152d899:1021413421,cbdaf91e4c4f94105a7489dbb5425be2:-876751050,87aa7dda0d4f9410a2c536b5d5051092:-1082199860,ec6975da334f94107b1bfdd70702e7a5:1004212674,401975da494f9410ea574161740126a1:1721580460,2ce6b15a514f941084d3236fbda7cc4c:1406660833,18f5f91aca4f9410df714d468eb53c92:-1404326706,2855f91a444f9410174ea220751f288d:-1324746634,af35b91ac34f941000574f73327aa457:-706054503,ec8479d6644f94102ceb8dec9b293ca8:113120081,332479d6d74f9410f58af93bff4f53f2:1581246973,87e3f5d64e4f9410750eecb51c7a4611:1714189309,9753fd56564f941016197e49c667e9ab:-733764881,b848e59e7f0f94103bb1d4f9854f08ca:-281507463,4b186d5e000f94106fa6b6acfe4f42a7:-1939130283,1467259e8f0f941029362e2d766dbc5f:-2033078436,edd6619e8a0f94108fed81bc8571139d:1657672963,f4a66d5e2c0f9410b8b1b75fd741508a:-275486218,c846ad1e6b0f9410a79d6ba128c1da59:214397117,cbc56d1edd0f9410019e7375792ce2f4:-926660405,0265a91ef70f941007cf165a78eb3bcb:-211915562,c5946dda6f0f9410238a592c01b4377b:102446970,52f221da010f94102677ec90d1ce8bb5:-1327096734,134221da7f0f9410c4fa156a12b8d2af:-1597686282,f491e19a0c0f941052d02be46c7ad57f:1768771679,9a51659a520f9410a40dcfd6dd645afe:2042493986,1211e19a3b0f94106f51f8b534026278:942069989,37c0e55ad50f9410f4911311257c9e32:1208152178,3f1f1dd6210f9410414176ab704d904a:-1731138324,6eed9d96640f94101fcce648dfd6990d:808712192,587b1596d80f94103738afa598b1fb67:1894323195,32da5956320f941037c363f326f472be:-1899155070,077a9156770f941024329e99284e101d:504045670,ffc6dd526d0f9410b9c7e6895b338fa5:760104608,98c59912000f9410b36a04d203d06982:-173565408,a9755d12080f94106facd141ebb25bc1:-599396367,b992d1de2ccb94105df76c3d0682786b:1821628225,2a225d5ec4cb9410269c2f85f26531d1:-329310268,1cf119def5cb94105cfd8b844ccbe78c:1992077125,8b81dd9e15cb9410f76e342eb01ed4aa:1561122028,8a215d9e99cb9410334a7d85f381f655:147082452,8b509d9a53cb9410be387740ead1248c:-2072592308,31cf851eafcb9410b9f53a260dc7cf31:1486810199,e28fc5dab1cb94106c4e18560d6aac8e:306426979,f8db899a82cb9410dccacc31602a3269:-686706526,49d98d1a1ccb9410167656707b9eca12:-982889240,d9a7411a82cb94103bcf2b8f7e336dd5:-142278176,fff5c1d609cb941090cf85ce9469db6d:-1339259028,87d58196fdcb9410b95a459775bcb052:-1489604120,a235895688cb94103d2a7fba781a527d:-1570060147,c4d30916d1cb94102e7a909cb2423e21:-1415609948,3d0ae5422e839410c456727401e47119:-588864513,0ca92182d38394100defdef1fbfc55c0:-753852225,1559a5426f839410f336a21397470f9a:-1000344027,9a29e54285839410d1530447fe978f23:174307011,3eb86542ec839410187d2dda6a4893d3:1570427077,7088a502268394103041f8bc9a4070be:-1557063436,0ea76102688394108c13a0cc91e7e797:-1699948970,1a67e502f18394102733716fbd5e7d7e:-973924832,0e172dceaa439410492f64eab6bcdc95:-1021616925,58c6294e0c4394103db689c501c0ab31:761269830,c4962dcedc439410a99ab439a1087c9c:-361781029,d4362dce194394106875b790992bc98b:-689933883,48a4a50eb0439410df2c5cd0258d6f29:1091490586,7a14ad4ea84394100e687f787dba28f8:2004024803,bcf3294e0b4394102a2a43afc8933026:1909313784,18c3618eb4439410982bead46c46f7a2:-1292014814,cb03294e364394105b06e309adf63e1f:-2123590495,32e2294e9e439410590d04a4cc6a811b:-1193508023,3881e5cad64394101f6ba0d01910f17d:772007959,7621e5cadb4394101a35a7591a5ec21c:-1192327179,24f025ca0c43941076ddf1b8be6149df:-1247948301,b9d0adca8643941059efae347a62ee46:926601995,ac90adcaca439410fab1bd0bec617d12:-1313977574,b640a1cafb4394103160d310107fd13a:815190420,0400ad8ace43941092adf1a887b8bf58:59160105,349f554a34439410f01e3c0ec58a5394:1518161,523f998a92439410fc28b02222923706:-661216482,441f598a334394104eb0b3c0e1fb66f6:-1174025262,30eed90aa8439410911449ee7ab311ba:-1678735722,e35e5d4adf4394101678b69c1e942929:-1255081507,34bdd90a4e4394102afc28f657f881c0:-1033754381,620d554af94394109d8b41a78549f28c:-1900795847,252cd90af7439410505de9557bcac5af:671934598,7adb190ac2439410036c368ddc5a1423:-786193519,fd9b11c6a54394106aec5f1e2f2ad174:-719625892,df6bddc6ad4394109baac1c86597840f:-1785809943,a60bd9c6a94394107f1e8ef6b26c2bb5:-1580755111,8bba19c6fc43941091ec1823f1716383:-910786688,0e7a11c6574394101fff361d20fdcf83:499765588,f53a11c6ed439410c3265a0e04fe417c:-1512681684,e0b99546bf43941035fb15e662c5c916:-1781179475,5298d546fd4394108eea015be72ef57e:-450160941,1168d546384394100654b7199f341e60:-368178473,d4189d061d439410c2a84e0b1b370a4a:742689073,23c7d546fe439410c67b1ca6dd4b1977:1715080619,6b875d0643439410092b1214616d0e25:-984866171,9aa619069c439410299bdae86647b4e0:1005188015,de661906394394106130b2ec0900b2db:15833471,41465dc2d3439410a4b18e4076b394f9:-481746475,ea8599c28c439410409080b7dbcdb8a9:-1699827441,e14511c2374394109b245cb63dfcee89:-261735533,d8e4d542774394108708a8f9a738367f:327261497,a58491c213439410620f47fa41fa744a:1655865695,93d291429c4394107e6391f5db692788:-1637465379,9572ddcec50394103c48c5b2af58a38e:31961332,47a11dce3403941042073f38cfb9df93:-75446484,d0ef45ce0703941079ef5db2897069b1:69221729,b3af09ce0b03941037517e3aaa3ae07f:-1723740085,6c8f01cebd039410faf2857a7eb6260c:227856635,4e4fcd8e380394105c84254923743dfd:1815989197,b00f898e0a0394105c54f20de0c5a776:227856635,5b8e494e4e039410ec10b6b23dc18814:1381008362,3f4e458e650394102492668fd043298d:1837304583,4b2e898ef303941025335a9fe9baa664:2092257298,ccedc58e2e0394108546b7c07737913b:-58636664,b3ad8d4e610394101cdf92aef8c306ce:343338085,d07d894e51039410ca9b5aefafae4c85:2003066267,8c4dc54eb803941064b9a95264cbac5c:972937194,642d8d4e4a0394100eb0ce97dea6fb62:-634650531,250d8d0e9e03941022b6aafef5c63155:1818560865,f6ac050e1c039410ba8be5c40ba6097b:160625994,ba7c854ec30394109d4f7a30d751478f:-1944425658,2c4c090e65039410aa8c920dd5f74014:-1154898730,daeb8d0e040394101a2ce93424cded6c:-842737056,b7bb090e75039410095ec582e11b5f0f:-351420674,405b050e54039410229a85a707e8a999:-1662058303,20da0d8a2b039410f0e4bfe04dd0a622:432110714,c9aacdca11039410d7aade6127b7b9e2:-604632062,542a89ca8a039410b248930148964c8a:-1089700817,54f9098ab6039410431f6e2bbd1a2c92:157277031,ce59098adc03941093d26c9c6e06f500:1389776108,40c8814a98039410a5a4359b61095ebc:248913268,4758c58a3a039410f8e8ba35e0ac4ef9:-1158851324,22878d4a060394108ca45d3106d225fd:-748331885,8847c14a990394102edef9948bed8db1:1729475299,3fe6854aa00394109418bf3a2d6ba4ed:47857695,e5c6854a700394108c67e3c9d06aba63:-1766671863,92960d0ad60394107e0d4149a47ef078:-77241315,4f76c50a0703941035ed2470c80b7f1a:1365114770,e795c50aa7039410fddfb991558581d0:1392168832,243505c6f103941090359216156f6435:1789580363,b6f40dc6a60394100a5d5139fb4d1882:1105761323,5c64c5c691039410ae276d179d3fefb2:36374369,2c624506790394102da6d885ed4d7123:1105761323,66714d06110394105be026f685747699:-1081969250,0021c146460394108e4b95354e3cfbba:-1506562039,6aae70c2e503941027c3778bc69cd94d:1410981021,8addbc421b0394106e5cdf49aa6adf14:-595375359,9b0cb27ee2bed01063dc7b1b3328473b:-1831250034,b899febaebbed010643cd150b9360e30:-1114202667,c351717d70fe10106056fab96f305d0a:-1544904061,ec90753d7ffe1010e33e30df991b7ac0:-2038610415,716075b913fe1010dca7e4e99c529073:-1484845682,8467ed755cfe10106078a0a0cba0abf1:-2145155571,c9c6e1b10cfe10105575ee8a19e06749:712294887,69562d35d1fe10104695fb6f0603666c:805564240,9764edf1a0fe101021a27e74d3dbc096:1062236189,02a3a5f187fe101077aa99e1caa362fd:-1549187195,c4c129714bfe10101b0d3a71411fb1ca:-407816227,b8f64dfd587e1010081dfb71db784a6d:-1474710868,892685bd927e1010115df95ffe7900bf:1588791809,18b5c5bd557e1010d1cc7a414c1b2c70:1294864712,cae485bd687e1010122275c0c3fa6b7f:-1939186806,a794c97dc17e1010344dd0e546932530:685808043,07c30df91a7e101051a505d199568f58:-350881363,da43017d027e1010796600dc20d42a1d:-1032561303,4e8fb479957e10109011492c11cba41b:-1150464994,e766ea615bf61010ccb13c0c569bd7b6:-1474710868,3465ea6168f610109b441cdf28ee50cc:838700754,b9d466edc0b6101058e1539ff03c986d:2042559101,c1f3a2edcfb61010f79015e29d13cb6a:-1303336864,7f7366618ff61010087d8afc676604cb:1398826487,e1c26ead3ab6101096ef4e134dc9553d:1664889763,f8706ead5db610107ad9b30c885ba94a:803469813,3e6b6da9bd361010a8ef6bf0ebd663f2:-1995078963,341b21a90a361010341c307c4522bb47:2040429460,7fda21a90136101070428ef2c7e96658:1477930441,37f9ed69f3361010dd7b2df9ea4ae8c1:-99107394,9db9e16927361010e08b9129701cefe0:-78087212,86792169123610103b58cc05ae3e880c:491066414,4ff8e1699636101043ce6914a3115f5c:1437667420,2da8612998361010fe81fe242ee094cf:701497166,35582de5a33610109e3e70048fcbae04:-1468891129,4cf6e9e5c2361010b26bf1feca0bafa8:-220869562,85a26925b336101036a6a28593d5a93e:-1890085878,105225e1b33610109ceebb75e87ded7f:1124785122,a1d0e5e119361010a682bc5c118ff67f:-73260059,6520a5a1ba361010917fd5ccbdfdcf94:1312171118,41cf95a18036101046519c4940655d53:1431098830,298f95a1ed36101045e29327b7f9859a:910044689,ce6f1d617c3610109a3fce1825ae0e66:1868229394,e4fed961103610100fd9cf68eaed61e8:662393148,249e1161ef3610102336c8711dcf72b3:-171751097,284d5d2108361010039e2546f69f4ea8:1995605732,7a3b55ed43f210108b026bcdf594b3b4:1521123297,f559996d13f21010998e8fc564ce41f2:2104140952,07c8956d67f21010d2ac15818deb7567:65494581,b478556d59f2101057f81b5ed89d8d7f:553932385,3357552d65f2101071bdb58125c09130:-2099833481,723e7ce900b21010733154077174ed9d:1816784057,953e7ce989b21010964976b682488ca7:2042024845,679cf8695db210102736cd01ec46bbcc:-1660986157,78fda8edd67210108f1fa6449b52e9d0:-958801416,c0df62e7b3aa9010eee4c4e75eb9bad9:-1080078080,7ebe2a67eeaa90102fc46bdc89e9a14b:823988155,5e2eee270daa90104086cf48359ae07a:1744926472,3bddaea79aaa90109d6637ac5783766e:-163400914,5deaaa2751aa9010037d23e42fc596a0:-246835014,2a6a6e27f8aa901056842f6ee48039a3:-463230388,7a4aaa27e1aa9010ca231681855fc084:-1354025653,e30a6a27ecaa9010447bcdb535e153ee:-1168698271,e4c9a62776aa90107738aa5e93d9e4f5:1170849378,3d956a63e4aa901004e542307ac59dfa:-400566148,c345a26393aa9010d3cdec9dc40f4f21:-243982333,84f4ea23a6aa9010a0393a63f6b8842e:438656676,f3842e2392aa901082fbdb1acb46bf6f:1137188019,7ff3ea23a8aa9010bf966f3888ae138c:963190094,12e3e623b9aa9010939d167e72b61063:432321766,2093a22368aa9010539b452edcb1b779:764187874,5653a2231aaa9010af96376df8c7195e:-2030783897,8b136223cbaa9010a8220a6f6bf6ffd2:-12214801,f5e2eeeff06a9010079ba5f2476a2c7d:-1685458979,8ab2aaef1e6a9010d7300275d059c848:84657219,8a82a2ef776a9010dfb6418d77c94081:-1360684947,28626aef056a901069150a34a60bf7c2:176128754,eee1a2ef4a6a9010d8ef1137c4c45ac5:-1070102802,25b1a2efc16a90102f7cc2ecfc405179:1324358558,05916aaf456a90108c73f97dc70e9682:1928454388,0571e2afc76a9010e6aeb0000256027c:1208669928,73d0a6afda6a90107cb7d899962c9394:342284644,c290ea6f3b6a9010ab36dc5237418218:697852922,9b40e66f796a9010db712e562e0db370:1205876139,45dfd66f896a9010ac7f3870a800ca1a:1487976606,a99fd66fbb6a9010da2e6aacc063be28:-1989467384,4d3fd66f6a6a90103fed3021a19f4b12:-669778560,dc3e1e2faa6a9010a8e7e59df7f0609f:-270868330,bedcdeeb146a9010da5f051b6398fb37:-1455566786,6bac1eeb666a90104c8a6148c2deb5a5:1473594757,2f6c9a2bca6a90106824b247cb542a0f:1625171569,f90c9a2b3c6a9010bcc57c9df06dbd3e:1766772847,caa9de2b146a901036b871e92e81040c:1807826392,49189a2bd76a9010e61c9f831a2b5c53:2138572419,4ab71a2b9a6a90104f930ae54379960b:1144770391,08971ae7bb6a90102582503e2e2eaf52:435589398,8f17d6e7ad6a9010d6e698b33a0ef797:952464090,a5a6dae7db6a9010e681a0ab6314e13d:1538797774,79769ae7f36a90108c80b3bb38642fd0:2009238300,e7565aa74e6a901026fa15d3f364d440:44573973,bf269ea75b6a9010fb1e755e80ee2905:-1626188691,a783d614512c7300b4824c12a13c2d71:-622068895,8dbf82a3436a9010069d9ce5beddc6f5:734106180,2ffb68b2425b10100b70372316769466:734106180</update_guid_history><update_set/><view/></sys_update_xml><sys_update_xml action="INSERT_OR_UPDATE"><action>INSERT_OR_UPDATE</action><application display_value="Global">global</application><category>customer</category><comments/><name>sys_ui_macro_e96b00384f5853402e3df6e01310c782</name><payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update table="sys_ui_macro"&gt;&lt;sys_ui_macro action="INSERT_OR_UPDATE"&gt;&lt;active&gt;true&lt;/active&gt;&lt;category&gt;general&lt;/category&gt;&lt;description&gt;This macro is called by the 'rgm_code_search' UI page.&amp;#13;
+Contains all CSS formatting and the initial search form page.&amp;#13;
+Based on the OOTB sample page 'CodeSearchExample' found at /nav_to.do?uri=sys_ui_macro.do?sys_id=9a7abeb2d7120200b6bddb0c82520308&amp;#13;
+_____________________________&amp;#13;
+Updated by Rick Marsha: 22aug2020&amp;#13;
+For questions or issues: rick.marsha.sn@gmail.com&lt;/description&gt;&lt;media_type/&gt;&lt;name&gt;rgm_code_search_macro&lt;/name&gt;&lt;scoped_name/&gt;&lt;sys_class_name&gt;sys_ui_macro&lt;/sys_class_name&gt;&lt;sys_created_by&gt;rick.marsha&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2018-02-12 17:27:46&lt;/sys_created_on&gt;&lt;sys_id&gt;e96b00384f5853402e3df6e01310c782&lt;/sys_id&gt;&lt;sys_mod_count&gt;848&lt;/sys_mod_count&gt;&lt;sys_name&gt;rgm_code_search_macro&lt;/sys_name&gt;&lt;sys_package display_value="Global" source="global"&gt;global&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_scope display_value="Global"&gt;global&lt;/sys_scope&gt;&lt;sys_update_name&gt;sys_ui_macro_e96b00384f5853402e3df6e01310c782&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;admin&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2020-09-20 13:28:48&lt;/sys_updated_on&gt;&lt;xml&gt;&lt;![CDATA[&lt;?xml version="1.0" encoding="utf-8" ?&gt;
+&lt;j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null"&gt;	
+	&lt;style&gt;
+	html, rendered_body {
+		/* margin-left: calc(100vw - 100%);
+		margin-right: 0; */
+		overflow-y: scroll;
+	}
+	
+		/* S E A R C H  F O R M  S T Y L E S */
+    .form_bg {
+        background-color: #293e40;
+		margin: 0px;
+		margin-bottom: 0px !Important;
+		padding: 0px;
+		border: 1px solid #293e40;
+		/*border-radius: 10px;*/
+    }
+
+	i {
+		margin: 0px 10px 0px 10px;
+	}
+		
+    form {
+        margin: 0px;
+        padding: 10px;
+    }
+	
+	.hit-details-container {
+		margin-bottom: 10px;
+		background-color: #ffffff;
+		border: 1px solid #d4d4d4;
+		width: 100%;
+		overflow: auto;
+		/* font-size: .9em;*/
+	}
+		
+	.hit-details-text {
+		color: #4a4a4a;
+		
+	}
+		
+	.hit-details-text-line {
+	}
+		
+	.hit-details-footer {
+		height: 6px;
+	}
+		
+	.hit-details-text-right {
+		overflow-wrap: break-word;
+		padding: 5px 1px 1px 5px;
+	}
+		
+	.hit-details-text-left {
+		overflow-wrap: break-word;
+		margin-right: 6px;
+		padding: 5px 1px 1px 5px;
+	}
+		
+	table {
+		/*background-color: #000000;*/
+		background-color: transparent;
+	}
+		
+	a, a:visited, a:focus {
+		/* font-size: 1.1em; */
+		color: #ffffff;
+		text-decoration: none;
+	}
+		
+	a:hover {
+		color: #ffffff;
+		text-decoration: none;
+	}
+	
+	INPUT#sn_codesearch_term {
+		display: table-cell;
+		max-width: 99%;
+		min-width: 50px;
+		width: 90%;
+		margin: 0px 5px 0px 5px;
+	}
+		
+	pre {
+		background-color: #fffee9;
+		margin: 0px;
+		/* overflow-y: scroll; */
+		padding: 0px;
+	}
+	
+	.panel {
+		margin: 0px 0px 5px 0px;
+		border: 0px;
+		-webkit-box-shadow: 0 0 0 rgba(0, 0, 0, 0.05);
+		box-shadow: 0 0 0 rgba(0, 0, 0, 0.05);
+		background-color: #ffffff;
+	}
+	
+	.panel-sub {
+		margin-top: -1px;
+		margin-bottom: 0px;
+		color: #293e40;
+	}
+		
+	.panel-body {
+		margin-left: 30px;
+		margin-right: 10px;
+		margin-bottom: 0px;
+		padding: 0px 0px 0px 0px;
+	}
+	
+	.panel-body-sub {
+		margin-left: 30px;
+		margin-right: 0px;
+		padding: 0px 0px 0px 0px;
+	}
+		
+	.panel-heading {
+		background-color: #516264;
+		/*border-radius: 6px;*/
+		border: 1px solid #527b76;
+		height: 40px;
+		padding: 9px 0px 10px 10px;
+	}
+
+	.panel-heading:hover, .panel-heading:focus {
+		background-color: #6d878a;
+		color: #f7f7f7;
+	}
+		
+	.panel-heading-sub {
+		background-color: #e0edef;
+		border: 1px solid #527b76;
+		overflow: hidden;
+		/*border-radius: 2px;*/
+	}
+		
+	.panel-heading-sub:hover, .panel-heading-sub:focus {
+		background-color: #c1d9e0;
+		color: #293e40;
+	}
+		
+	.panel-heading-sub-table {
+		width: 100%;
+	}
+		
+	.panel-heading-sub-container-left {
+		width: 80%;
+		max-width: 80%;
+		min-width: 50%;
+		white-space: nowrap;
+		height: 100%;
+		vertical-align: middle;
+		overflow: hidden;
+	}
+	
+	.panel-heading-sub-icon-container {
+		white-space: nowrap;
+		height: 100%;
+		vertical-align: middle;
+		text-align: right;
+		margin: 0px 10px 0px 10px;
+	}
+	
+	.panel-heading-sub-container-right {
+		white-space: nowrap;
+		height: 100%;
+		vertical-align: middle;
+	}
+		
+	.panel-heading-icon-up {
+		color: #0a6151;
+	}
+		
+	.panel-heading-icon-down {
+		color: #e84b52;
+		
+	}
+		
+	.panel-heading-icon-disabled {
+		color: #222222;
+		
+	}
+		
+	.panel-hit {
+		background-color: #f7f7f7;
+		padding: 10px 10px 20px 10px;
+		border-top: 1px solid #527b76;
+		border-right: 1px solid #d4d4d4;
+		border-bottom: 1px solid #d4d4d4;
+		border-left: 1px solid #d4d4d4;
+		margin-top: -1px;
+	}
+
+	.panel-hit-header-link-left {
+		margin: 0px 5px 0px 10px;
+		display: inline-block;
+		color: #293e40;
+		width: 100%;
+	}
+		
+	.panel-hit-link-left {
+		margin: 0px 5px 0px 10px;
+		display: inline-block;
+		color: #293e40;
+	}
+		
+	.panel-hit-link-right {
+		margin: 0px 10px 0px 5px;
+		display: inline-block;
+		color: #293e40;
+	}
+		
+	.panel-hit-field-label {
+		font-size: .8em;
+		font-style: italic;
+		color: #293e40;
+		/*margin-top: 2px;*/
+	}
+
+		
+	.hit-count-badge {
+		font-size: .8em;
+		/*font-style: italic;*/
+		background-color: #4aad9b;
+		color: #ffffff;
+		margin-left: 10px;
+		padding: 1px 5px 1px 5px;
+		border-radius: 8px;
+	}
+		
+	.panel-title-left {
+		
+	}
+		
+	.panel-title-right {
+
+	}
+		
+	.panel-top {
+		margin-top:4px;
+	}
+		
+	.icon-search {
+		color: #f0f3f3;
+		font-size: 2em;
+		width: 40px;
+		vertical-align: middle;
+		padding: 5px;
+	}
+		
+	.icon-search:hover {
+		background-color: #516264;
+		/*border-radius: 20px;*/
+		width: 40px;
+		cursor: pointer;
+	}
+		
+	.csearch-input-left {
+		white-space: nowrap;
+	    overflow: inherit;
+		min-width: 68%;
+		max-width: 75%;
+		display: table-cell;
+		padding: 0% 1% 0% 10%;
+		margin-right: 10px;
+		margin-top: 5px;
+	}
+		
+	.csearch-input-left :focus {
+		border-color: #dadada;
+	}
+		
+	.csearch-input-right {
+		white-space: nowrap;
+		min-width: 20%;
+		max-width: 25%;
+		padding: 0% 10% 0% 1%;
+	}
+		
+	.csearch-input-container {
+		width: 100%;
+		display: inline-table;
+	}
+
+	.csearch-details-checkbox {
+		height: 20px;
+		width: 20px;
+		background-color: #527b76;
+		padding-top: 10px;
+	}
+		
+	.csearch-details-checkbox-label {
+		color: #ffffff;
+		margin-left: 10px;
+		padding-top: 10px;
+	}
+		
+	.csearch-search-input {
+		padding: 5px 15px 5px 15px;
+		background-color: #fff;
+		background-image: none;
+		border: 1px solid #527b76;
+		height: 40px;
+		width: 100%;
+		min-width: 200px;
+		font-size: 1.5em;
+	}
+		
+	.csearch-line-divider {
+		border: .5px solid #e8e8e8;
+		margin: 4px 0px 4px 0px;	
+	}
+		
+	.cs-search-results {
+		width: 100%;
+		padding-left: 5%;
+		padding-right: 5%;
+		display: none;
+	}
+		
+	.csearch-results-top-container {
+		width: 100%;
+		/*border-radius: 10px;*/
+		border: 1px solid #527b76;
+		margin: 5px 0px 10px 0px;
+		padding-bottom: 5px;
+		display: none;
+		background-color: #ffffff;
+	}
+		
+	.notification-success, .notification-success:hover {
+		color: #20312f;
+		background-color: #c1d9e0;
+		border: 1px solid #527b76;
+	}
+		
+	.cs-icon-searching-container {
+		display: table-cell;
+		margin: 10px 0px 10px 0px;
+		width: 100%;
+		padding: 0px;
+		display: none;
+		text-align: center;
+		vertical-align: middle;
+	}
+	
+	.loading-indicator {
+		/*font-size: 3rem !important;
+		width: 3rem !important;
+		height: 3rem !important;*/
+		color: #4aad9b !important;
+	}
+	
+	.hit-row {
+		line-height: 20px;
+	}
+		
+	.hit-left {
+		background-color: #ffffff;
+		margin-right: 5px;
+		padding: 0px 5px 0px 10px;
+		width: 50px;
+		min-width: 50px;
+		max-width: 70px;
+		text-align: right;
+		border-right: .5px solid #d4d4d4;
+		border-top: .5px solid #d4d4d4;
+	}
+		
+	.hit-right {
+		padding: 0px 5px 0px 10px;
+		border-top: .5px solid #bbd9dc;
+		background-color: #eff9f9;
+	}
+		
+	.hit-red {
+		border-top: .5px solid #8a8a8a;
+	}
+		
+	.hit-lines-table {
+		width: 100%;
+	}
+		
+	.hit-search-match {
+		background-color: #ffef9a;
+		border: .5px solid #ffba00;
+		border-radius: 4px;
+		padding: 1px;
+		margin: 1px;
+	}
+		
+	.noselect {
+		-webkit-touch-callout: none; /* iOS Safari */
+		-webkit-user-select: none; /* Safari */
+		-khtml-user-select: none; /* Konqueror HTML */
+		-moz-user-select: none; /* Firefox */
+		-ms-user-select: none; /* Internet Explorer/Edge */
+		user-select: none; /* Non-prefixed version, currently supported by Chrome and Opera */
+	}
+	&lt;/style&gt;
+	
+	&lt;div class="csearch-top-container"&gt;
+		&lt;div class="form_bg form-group" id="search-form"&gt;
+			&lt;g:ui_form&gt;
+				&lt;div class="csearch-input-container"&gt;
+					&lt;div class="csearch-input-left"&gt;
+						&lt;span class="icon-search" onclick="return sn_codesearch_getResults()" /&gt;
+						&lt;input type="submit" 
+							onclick="return sn_codesearch_getResults()" 
+							style="position: absolute; left: -9999px; width: 1px; height: 1px;" tabindex="-1" /&gt;
+						&lt;input id="sn_codesearch_term" class="csearch-search-input form-control" type="text" placeholder="" name="sn_codesearch_term" value="" autofocus="autofocus" autocomplete="off" onfocus="this.select();" /&gt;
+					&lt;/div&gt;
+					&lt;div class="csearch-input-right"&gt;
+						&lt;input type="checkbox" id="csearch_include_details" class="csearch-details-checkbox" /&gt;
+						&lt;label for="csearch_include_details" class="csearch-details-checkbox-label"&gt;Details (slower)&lt;/label&gt;
+					&lt;/div&gt;
+				&lt;/div&gt;
+				&lt;!-- the sn_codesearch_getResults and sn_codesearch_clearSelections function definitions are in the parent UI Page --&gt;
+			&lt;/g:ui_form&gt;
+		&lt;/div&gt;
+		&lt;div id="csearch-results-top-container" class="csearch-results-top-container"&gt;
+			&lt;div class="cs-icon-searching-container" id="cs-icon-searching-container"&gt;
+				&lt;span class="loading-indicator icon-loading" id="cs-icon-searching" /&gt;
+			&lt;/div&gt;
+			&lt;div id="cs-search-results" class="container cs-search-results"&gt;
+				&lt;div class="panel-top"&gt;
+					&lt;div class="panel-heading notification-success" id="final-result"&gt;
+						&lt;h4 class="panel-title"&gt;&lt;span id="final-result-count"&gt;0 records found&lt;/span&gt;&lt;/h4&gt;
+					&lt;/div&gt;
+				&lt;/div&gt;
+				&lt;div class="accordion" id="cs-accordion"&gt;&lt;/div&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+	
+	&lt;script&gt;
+		$j("#sn_codesearch_term" ).focus();
+	&lt;/script&gt;
+	
+&lt;/j:jelly&gt;]]&gt;&lt;/xml&gt;&lt;/sys_ui_macro&gt;&lt;/record_update&gt;</payload><payload_hash>-716713683</payload_hash><remote_update_set display_value="RGM Global Code Search - v2">365eae0bdb94601082850181ca961911</remote_update_set><replace_on_upgrade>false</replace_on_upgrade><sys_created_by>admin</sys_created_by><sys_created_on>2020-11-10 10:00:00</sys_created_on><sys_id>7e5eae0bdb94601082850181ca961912</sys_id><sys_mod_count>0</sys_mod_count><sys_recorded_at>175ac7ed55a0000001</sys_recorded_at><sys_updated_by>admin</sys_updated_by><sys_updated_on>2020-11-10 10:00:00</sys_updated_on><table/><target_name>rgm_code_search_macro</target_name><type>Macro</type><update_domain>global</update_domain><update_guid>8415b83a595b1010d0e11f76d4ae5129</update_guid><update_guid_history>8415b83a595b1010d0e11f76d4ae5129:-716713683,cc04303a1d5b1010a970f9e61d9cf001:48353295,bfc869e2d693941051ebd9b63118650f:2067961775,2a9869e258939410f57f4a4bc7a3ea6c:1119359990,cac7eda27193941060bcb6032f47ac39:1886003589,8457e1a24a939410c09beedd6118ba17:1194689206,44c6ed62a393941009066c91481bae37:1426395027,5f84e9aeb4539410b53a1898834cc9c6:1322112174,4434e122c49394105ea1d430045720fb:-626330803,f71e5daa8653941022bd75e6dd4e481e:-1955753930,d03d592a30539410352049c7a9a728f6:-1595755224,01dc956ace539410ebea40d86f70e5d9:1066208850,7eeadd2a2653941047fa1560bd4f75cc:1970914974,b64a1de68053941094a5069fbe28fa78:180980409,0fc9592af253941052f9d0faf0550014:795645377,ffc8dda6cb5394107468752b1cdc01c7:-238254125,e2a8dda6445394107e9cd5a5d70860b1:-1359824994,27879966f1539410aa01be3649ffa270:-1921095626,e117996603539410c07b1d4c52be5b34:-1760159873,e7e551263953941045be692c58d17bd3:801770078,4bb5d5668b5394103589887a19489bfc:226812360,398519e245539410ce22e1d4d9fe15e0:-601054320,4c841de249539410d526990c4a90b809:-1584996231,05d399e2cd53941086df00cc8195a34a:1227949182,091399e29b539410d8a6a9f17ccade43:2027619738,0de25562d2539410445ab7e9aacdb846:-117983391,967291e2555394109ac2154e63d905a2:1555390322,65e11162d85394106638b35cf39e3ce6:419643530,26b1d9620253941052fc10953c93d078:1174236188,a9509d2235539410db4cd3214916349e:1653106928,92ff85620253941064397a6916b07511:382560288,a71e85eed0139410271ca1cf35c7a4fb:175386119,8c7d0dae71139410f99858a20b245dc1:-153256300,cb4c4d2e9c139410309bec4c39fab884:170429846,cdba4d2eeb139410c74cab1e18d40010:1660058908,59a90daa34139410a29ec54c855a486b:-615873828,0e89052ea3139410b46f7913bebab636:101180632,c51981aaac13941094edb1d5afbc8d34:-454382268,206641aa271394108e26090d417398b6:1834287000,19d5052a381394104876a83fddb9c778:1888670571,5cf28da6e4139410636401c933f34753:1242066590,57c1c9a6f31394101b67ef1d50300afb:1888670571,7c91c9a69e1394104c0f4c1d43ede2a2:1517622445,7e214966731394104bfd17a4aa2bf166:456902279,4eb0c92686139410859c0c1f1f636872:1986720169,d4000d6290139410023bf15bedd60fac:-2000581365,795f3026d5139410dfe80a5814ac9d6e:-2042533426,e3bebca21e139410dc5bf23e622478a7:115892191,e12ebca2e3139410410eeb130c8ca7a1:-1464888673,7e4bf062af139410fc6daf4665f14bc6:-863893703,3d9ab0227c139410d0e9df1e7893df91:-1802107339,0e893ceed9df54101077eaafdc4d6b5d:403544876,b838b8ee77df54103afdf26c51f209d9:1367338763,69a7b8ee26df5410092de21f3913f6d5:884079294,c627fcaeb2df5410dcb027051980103d:1202243659,b3f6f0eeacdf5410a1b901b96b9c0e67:-458864792,cce6fcaec0df5410cd37c5e8e782b59b:-1881912327,0965b0ae87df541009a79bc63fbce954:-324209552,68c4b86e94df54104ecb48c0764478da:145069439,6254346e15df54105d9d247b8d6acffe:956251060,9204b06e1adf54102f8e04c9d8687e1b:-1182370856,aa4270ea9ddf54106fdf5722ca081db1:-1344681045,e261f0aa80df5410781315620131af63:404281602,bc8f68a6e4df5410a84c0c80ae0989fb:1864126818,6d3fa46a47df5410b25b938b023bb58f:1409065037,272beca66edf5410f526127f3d1ecbb9:-594519877,56caa8a6e2df54101044046327aa2ade:-2081079893,ffe7e026d3df5410d76decd86cbda878:1415559581,a85760e204df5410044863d9b10cbf50:1944620827,a3b66ca2fddf5410fd4617ed4be7d115:1415559581,fdf5e0a20fdf54106a9a706a28472e52:1944620827,cddca44338cb18108db75e270e99fd79:-594519877,63bc20435fcb1810a072f720d440dcd1:-2081079893,323cac03c9cb1810b4cdbccdba236084:-450069613,01db60cf078b18103684d631184087eb:1792402693,f4caa4cf138b181060d98905c60172de:-1607481655,683aa48fb68b1810413a0918e080b945:-1704709400,1202036a94cbd410af53f638036edb17:155229042,de21472ab5cbd41026b8400f462d49d9:1176132978,75af7a6af2cbd4102c63a2f44bc0abb1:-588434013,ed9e326a52cbd4105486d39dab80f5cb:374254150,c35e3a2aefcbd410faf0c399c76ba9a6:622634318,51dd7ae680cbd4109dc7e82171e7c04b:-1324597362,5adcfa668ccbd41004387cff206ebfbb:1248815431,5cbb76a66ccbd41001bbe340772c5152:-1002428371,c64bfe6648cbd4107fca17cd5ba75366:-1008753687,511afa6683cbd410e1319949fbc5f2b7:1047008876,c6c9fa662dcbd41031132cf0ee971cb1:-913787087,7857be2263cbd4107d5de9520488aa46:893578633,62e63ee2c9cbd41064f6c5bb780ccd5b:-661393491,4af2b6ee628bd410f2906e3f395f2362:-1745163032,f482f22210cbd4105967ddea9ea92a30:-2090990266,ad027aee048bd410b989ab5c39ba5b78:1648401212,7f113a6e9b8bd410d2aad424ba52b2ad:-561671797,f7c0b6ee628bd41095e2fc0d29ab2c0e:2027051085,fa00b6aeea8bd4102564d3fd172f832e:-1842526425,f5bf6aaeab8bd4100d03996073b5faf6:952896183,807faeea6a8bd41031688f2775146c39:537537788,4d1f2e6ef68bd41077d27f810e983cc5:-158764435,16de6a6ef08bd410bfb30cd7729a431d:-765866098,e44eae2eb58bd4108b68748c607158f5:1739887977,d96deeea938bd410a69b9e12efe0644e:40656231,0b2daa2ec38bd4100af929c5885a4656:-1513256907,c50daeea778bd410be0c5773eb3bc3fc:1555879194,dcfc6a2eb28bd41014d3febf69373681:-488557467,5ffb2eaa518bd41050b610d8d4b82d9c:-1936179376,d97b62aa6a8bd410f58cc4fcd4875918:615575810,316aeea6ca8bd4105c5421b0bc252b99:-766457252,741a2e66be8bd410935f988ff5648942:495464033,c8e9a6aa878bd410ad97da392e7fb5aa:1607247571,15d8ea6a2e8bd410eb57d25ff038b502:-1278522860,82f6aae6858bd410a0c7fa1a70543417:1460114025,c4366ee62f8bd410bae51bddb6131bd0:-1912907016,dff5aa66628bd410d15b8074e69491aa:2086891469,6a052e66158bd4104107e6b11f2a7c85:-1212999139,4044ae264d8bd4105a447ee087092261:-571139834,549322664a8bd410603186644b9fda4b:1965794367,e0f122262c8bd4103d16d654ebab67e8:1730065353,9981aaa29e8bd410e78785b29aad8a54:-1899262492,13212626e48bd410d9692bb4c631ffca:-252364225,72a022266b8bd4107a513aa4fc69df67:1129232556,ff30aae2148bd410578164e1b2cbda6e:-1553516460,d8ffdea21b8bd41062d13cbb787f267a:-1604235813,3f8f16a26a8bd4105ca114bba35ec7ad:-1451726975,633fdea2fd8bd4106f74bf8b4660f577:-1564126504,30fe9aa2f08bd4103294e5b69cbe404d:-565685417,c2be9aa2b38bd410c74c632b31667733:1346369385,f98e1aa2078bd4102b4df83055433203:279191171,cc3ed2a2048bd4100a2b6d5e42f65eb0:-1816749590,90ed56eedf4bd41072f5406677e1b8c0:541136516,16dc9622f18bd41014bc1c30260b54e5:642002081,f7f78ed2aa8f94101a9e75933aa9388f:-1936179376,09ebf55e654f9410c2140e6205343476:673278556,7f07295eb60f941083f4be88120716ad:2058230034,c3d46ddab30f9410a555b62c40064271:-1437575976,b40469da120f9410b22d3908002fc7af:361775858,d2536dda3d0f941006b727008351221e:31500787,9c1329da860f94105a16d59eac05373b:-1168612684,879225da550f9410f0c4bdf5fdebfe48:-1498887755,50d1ed1ab30f94109f7bbfcbd8aaf34c:813037742,6620295ae00f94106c52a40092d96ce2:-923116471,349f5d1a4a0f9410329b7c749239a85f:-1203132565,04de591a410f94106302c4eda9040216:-1334439743,55be511a340f9410e98ed2c63c741ea0:-923783289,945cddd2170f9410a6b64c068bbb0945:64195573,5e7b9d16ce0f9410ebfcb50294486287:-666721949,fdd991568f0f941070512f8746b43b16:-838772925,06f811d2cc0f9410a1d31f77ea861d6a:611137027,a3a855160b0f9410eed992d22ee40650:277991049,a41811d2860f9410731dc1ae98eb6d65:-919884495,a7779592950f9410a4fc322310cf6010:2131022093,b2275d927c0f941034d23faf7f512748:-152815411,7e8611921f0f9410c4913c323cbb3ffe:-148400127,99449152f40f94105f03dd33c91bb3ee:-24119162,70f31112bd0f9410941015b35bf00a4f:-1192342112,ddc39912d90f9410f36e7ce93304779b:1919424231,d7739912420f9410592a03cd12242f79:754807883,eb33d9debccb9410f4ec82090e95af3f:-1569664693,e8f2d9debbcb9410c4830772514adc16:1225712333,32fbc5da1fcb94100347d1adf236960f:760477168,183bc11aa9cb9410ae17ec949e20c623:1287491039,829a851a1bcb94104c42ad25bfec4a9d:1986043543,218ac95a1ecb9410065a6a2b7b292ae9:-311557628,8f0a055a91cb9410f5ade56ddcad49df:1632440084,27c7091a70cb94101084131628c4315e:920975038,4447411a5fcb9410d10c43207200b5d1:1740185338,fda68196f2cb94107db5b7ec1e473d43:1759018451,40b1393d3ffe1010f311c276c1749e09:-321661500,d731393d80fe10105635917c08c784fd:414854135,f15fa5f912fe1010e9c549f6009695c6:-244607167,403fa5f9f5fe1010f56eff92aeaf8ca9:-389658179,45fe25b9befe10104b3ffc07a7b0eb54:117360287,3a9e65b96bfe10108bdc9402111c180a:881761786,2f2e25b994fe1010af426f293306a54e:2112545970,a2ed25b986fe10105ef8442e30f1b405:-250553496,6f7d6975d9fe10106e7e2b13f3b6a838:-2059528415,122de17999fe10105fab37ac0cb2dfc3:-1608195310,40bc6975adfe1010f9cd238110c0db2c:-1103527118,62952d353efe10101e5147f99d0b3369:-954529928,beb4a9b1b9fe10109c6ba1a920923ada:1577957409,d583a9b1ccfe101090c6427fa25bd2ba:637490294,21d2a9b18dfe1010b13f08b693396897:1432657799,4e22a9fd76be1010fcf279a20275fe63:-242730269,9f0585bd907e10105ba9751f38e82ca5:-2078998199,9414497d0b7e10109554b24af702b4d2:-773248915,064141f9e27e1010a7a20645b772d430:-1683151912,62d045f9d77e1010ab8e2b8ba15ff001:987622228,f1a085f9867e1010e8ce45d2a30705d3:-1876747325,1f70c1f9777e101022396a2bd7599a24:-817072159,245041f95f7e1010fc0191425172a827:653001625,5120cdb9037e10101ffa05ed0721e64e:-1333516126,174ff4b99b7e1010be038bdd10e4d261:-1511023892,6fce52adb0b6101098bf780865e29e30:-1295949228,184ebce9f8b2101018561d22b9e320df:-1747282333,af2e70e97db21010af273835dfd083da:658080037,9b8cb8a920b21010463fecce4f5dc084:2001310059,845b7c692fb21010f2f0ede3fdf421c8:1117966432,c92bf0e5a1b210104d14f9274a965ccc:-1199458937,a9f9f0e585b21010582c913e86541fc6:-832789997,ba7978295ab21010145cb7435ef598dc:839474473,f18878a50fb21010c716ca496a96aeac:1222612438,1867f065ccb21010f761b67dadf76a18:-1217082411,df36bca16db21010f97729118b9c755c:-875784479,bd16bc614cb21010e33bd0f208aa89ce:-2063295509,4a657c65f2b210108677ca1bf0dd0fd0:-875784479,94f47425bab21010af158eda79d753c8:80025114,0d64fc216cb2101029ce4bdbb61672c9:1805456442,b5d2786185b2101028d806af20c414ef:990904793,55b1f4e13bb21010ff265693c9496d90:1126050075,2fefec21a8b210103d344c3945df3fdb:-1412252738,705f2cad257210104a84bab09b6572d2:-25917596,d0ee64210db21010580644f65ed7bdca:-590904364,93cde4adaa721010e9c3386d3074037d:-458928716,6e7da821c8b2101010d446fa6d15232f:-1519049299,8f0da8edb47210102cc733a8a83764d6:-506744457,999ca4ad9c721010c00c1e9130b2eb4f:636063799,7d2ce8eda97210103642f840e762bece:522492505,548be46d6872101023f1c9230ab98f29:-1822884324,26baa4ade77210104d53b810ded4a34a:-1967157607,872a64addc7210108efb6a89849112b7:887570432,3419286d1a721010a13499454c07397e:-1659599808,f2d8a06d7d72101057021c5c63a4206f:-265794636,b8b8e8e9337210105d8d1d0d52d5b92b:-816477747,2058ec2d5d72101000c7446add4f3b0d:-190729233,d008242d6d7210104c9f2d69e7bc4898:943218811,a187602dab721010c046143c895e7d0f:1950811143,b517e8e9867210101d1df7806c9b7e1d:742062248,b0c6e8e9a17210109c8d3f11b6a31433:2025799184,5d46a0e9fc72101032cb7c181f72c2b8:1364185818,48f5e0e921721010e84b26ac6fcb379d:140399161,4d95a0e9767210102aea1ee2bd0f6ab1:-1744175755,f40564699d721010cc7fb70f607d9430:1395852139,b19428a9c97210109c34b0a824cf7a19:324291078,db34e869d77210109ab637bc3a011b6f:-1967696916,46d3e469cf721010e5009c5b4e54b3c8:-649309830,a073e8698c721010014e8fdc9c34536b:-1564118015,4423ac295e7210106bdacc7741fc59b2:-1210896187,f0e2ac29817210104ba18de409548d08:-367485853,ad42a429ae72101094ba86352e805a5a:-1658000547,70f160e59b7210101fe8cc147acb8739:-1649514076,fc9128a569721010564e400ed9ae045f:1625752179,a79f10e5717210107ab0d88019bff3b6:-1966975795,ce1e946564721010a7e52a859ad474a3:834749181,a1bd9465227210101ce3dbd5d3b1b972:1108340203,724b54a1087210109bbabdbf75c9d13e:-1722428217,5eea5ce1ce721010e48664e95942c002:-637412655,4b47542161721010706ac616be1b0bc1:-1349614060,ef839e54d72c73006faeb2013f493eea:723664736,c5bf82a37c6a9010f84043211b4a95f3:1031972022,6ffb68b2f95b101022dfcf81e3a3ba3e:1031972022</update_guid_history><update_set/><view/></sys_update_xml><sys_update_xml action="INSERT_OR_UPDATE"><action>INSERT_OR_UPDATE</action><application display_value="Global">global</application><category>customer</category><comments/><name>sys_ui_action_41c26e6237e45700765befb2b3990ee9</name><payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update sys_domain="global" table="sys_ui_action"&gt;&lt;sys_ui_action action="INSERT_OR_UPDATE"&gt;&lt;action_name/&gt;&lt;active&gt;true&lt;/active&gt;&lt;client&gt;true&lt;/client&gt;&lt;client_script_v2&gt;&lt;![CDATA[function onClick(g_form) {
+
+}]]&gt;&lt;/client_script_v2&gt;&lt;comments/&gt;&lt;condition&gt;gs.hasRole('admin') &amp;amp;&amp;amp; current.getTableName().startsWith('sys');&lt;/condition&gt;&lt;form_action&gt;true&lt;/form_action&gt;&lt;form_button&gt;false&lt;/form_button&gt;&lt;form_button_v2&gt;false&lt;/form_button_v2&gt;&lt;form_context_menu&gt;true&lt;/form_context_menu&gt;&lt;form_link&gt;true&lt;/form_link&gt;&lt;form_menu_button_v2&gt;false&lt;/form_menu_button_v2&gt;&lt;form_style/&gt;&lt;hint/&gt;&lt;isolate_script&gt;false&lt;/isolate_script&gt;&lt;list_action&gt;false&lt;/list_action&gt;&lt;list_banner_button&gt;false&lt;/list_banner_button&gt;&lt;list_button&gt;false&lt;/list_button&gt;&lt;list_choice&gt;false&lt;/list_choice&gt;&lt;list_context_menu&gt;false&lt;/list_context_menu&gt;&lt;list_link&gt;false&lt;/list_link&gt;&lt;list_save_with_form_button&gt;false&lt;/list_save_with_form_button&gt;&lt;list_style/&gt;&lt;messages/&gt;&lt;name&gt;Code Search&lt;/name&gt;&lt;onclick&gt;popCodeSearchDialog();&lt;/onclick&gt;&lt;order&gt;1000&lt;/order&gt;&lt;script&gt;&lt;![CDATA[function popCodeSearchDialog() {
+    var dialog = new GlideModal('rgm_code_search');
+    //var dialog = new GlideDialogWindow('rgm_code_search');
+    dialog.setTitle('Code Search');
+    dialog.setWidth(900);
+    dialog.render();
+}]]&gt;&lt;/script&gt;&lt;show_insert&gt;true&lt;/show_insert&gt;&lt;show_multiple_update&gt;false&lt;/show_multiple_update&gt;&lt;show_query&gt;false&lt;/show_query&gt;&lt;show_update&gt;true&lt;/show_update&gt;&lt;sys_class_name&gt;sys_ui_action&lt;/sys_class_name&gt;&lt;sys_created_by&gt;rick.marsha&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2018-03-03 01:14:14&lt;/sys_created_on&gt;&lt;sys_domain&gt;global&lt;/sys_domain&gt;&lt;sys_domain_path&gt;/&lt;/sys_domain_path&gt;&lt;sys_id&gt;41c26e6237e45700765befb2b3990ee9&lt;/sys_id&gt;&lt;sys_mod_count&gt;16&lt;/sys_mod_count&gt;&lt;sys_name&gt;Code Search&lt;/sys_name&gt;&lt;sys_overrides/&gt;&lt;sys_package display_value="Global" source="global"&gt;global&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_scope display_value="Global"&gt;global&lt;/sys_scope&gt;&lt;sys_update_name&gt;sys_ui_action_41c26e6237e45700765befb2b3990ee9&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;admin&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2020-09-20 13:59:38&lt;/sys_updated_on&gt;&lt;table&gt;global&lt;/table&gt;&lt;ui11_compatible&gt;true&lt;/ui11_compatible&gt;&lt;ui16_compatible&gt;false&lt;/ui16_compatible&gt;&lt;/sys_ui_action&gt;&lt;/record_update&gt;</payload><payload_hash>1594109484</payload_hash><remote_update_set display_value="RGM Global Code Search - v2">365eae0bdb94601082850181ca961911</remote_update_set><replace_on_upgrade>false</replace_on_upgrade><sys_created_by>admin</sys_created_by><sys_created_on>2020-11-10 10:00:00</sys_created_on><sys_id>ba5eae0bdb94601082850181ca961912</sys_id><sys_mod_count>0</sys_mod_count><sys_recorded_at>175ac7ed5690000001</sys_recorded_at><sys_updated_by>admin</sys_updated_by><sys_updated_on>2020-11-10 10:00:00</sys_updated_on><table>global</table><target_name>Code Search</target_name><type>UI Action</type><update_domain>global</update_domain><update_guid>6f1c74bef55b1010f08f75ebf4cf64e2</update_guid><update_guid_history>6f1c74bef55b1010f08f75ebf4cf64e2:1594109484,a3fb68b2695b1010c0194101d2faf33c:-796448577</update_guid_history><update_set/><view/></sys_update_xml><sys_update_xml action="INSERT_OR_UPDATE"><action>INSERT_OR_UPDATE</action><application display_value="Global">global</application><category>customer</category><comments/><name>sys_script_include_a10cd9ed2ff21010b30c49e72799b6d5</name><payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update table="sys_script_include"&gt;&lt;sys_script_include action="INSERT_OR_UPDATE"&gt;&lt;access&gt;public&lt;/access&gt;&lt;active&gt;true&lt;/active&gt;&lt;api_name&gt;global.RGMGlobalCodeSearchAjax&lt;/api_name&gt;&lt;caller_access/&gt;&lt;client_callable&gt;true&lt;/client_callable&gt;&lt;description/&gt;&lt;name&gt;RGMGlobalCodeSearchAjax&lt;/name&gt;&lt;script&gt;&lt;![CDATA[var RGMGlobalCodeSearchAjax = Class.create();
+RGMGlobalCodeSearchAjax.prototype = Object.extendsObject(AbstractAjaxProcessor, {
+	
+    getRecordDetails: function() {
+        var recordTable = this.getParameter('sysparm_table');
+        var recordSysID = this.getParameter('sysparm_sys_id');
+        var returnVal = new RGMGlobalCodeSearch().getRecordDetails(recordTable, recordSysID);
+		
+		return returnVal;
+		
+    },
+
+    type: 'RGMGlobalCodeSearchAjax'
+});]]&gt;&lt;/script&gt;&lt;sys_class_name&gt;sys_script_include&lt;/sys_class_name&gt;&lt;sys_created_by&gt;admin&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2020-08-22 22:35:13&lt;/sys_created_on&gt;&lt;sys_id&gt;a10cd9ed2ff21010b30c49e72799b6d5&lt;/sys_id&gt;&lt;sys_mod_count&gt;7&lt;/sys_mod_count&gt;&lt;sys_name&gt;RGMGlobalCodeSearchAjax&lt;/sys_name&gt;&lt;sys_package display_value="Global" source="global"&gt;global&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_scope display_value="Global"&gt;global&lt;/sys_scope&gt;&lt;sys_update_name&gt;sys_script_include_a10cd9ed2ff21010b30c49e72799b6d5&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;admin&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2020-09-05 19:58:12&lt;/sys_updated_on&gt;&lt;/sys_script_include&gt;&lt;/record_update&gt;</payload><payload_hash>1140509508</payload_hash><remote_update_set display_value="RGM Global Code Search - v2">365eae0bdb94601082850181ca961911</remote_update_set><replace_on_upgrade>false</replace_on_upgrade><sys_created_by>admin</sys_created_by><sys_created_on>2020-11-10 10:00:00</sys_created_on><sys_id>f65eae0bdb94601082850181ca961912</sys_id><sys_mod_count>0</sys_mod_count><sys_recorded_at>175ac7ed5340000001</sys_recorded_at><sys_updated_by>admin</sys_updated_by><sys_updated_on>2020-11-10 10:00:00</sys_updated_on><table/><target_name>RGMGlobalCodeSearchAjax</target_name><type>Script Include</type><update_domain>global</update_domain><update_guid>7d5e3882100394107a89de77af3446f6</update_guid><update_guid_history>7d5e3882100394107a89de77af3446f6:1140509508,e06df482b6039410a7aba3525f5f4a14:-1946299214,7e89feba5dbed0101b24ab46441e651e:-2083030732,ae4932fa75bed010449fa64b4a196918:-1413137344,0522c5b9ed7e10104bd92f4338f03cb6:-892664777,7b206aad45b610101c170620d24768a5:1826482778,fbfbe5e9b9361010f4c92e05d3a50490:100554441,2d0cd9ed1af210105041274bbeff36d8:-2131020660</update_guid_history><update_set/><view/></sys_update_xml></unload>
